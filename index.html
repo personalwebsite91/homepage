@@ -234,25 +234,65 @@ async function loadCampaigns(){
 
     for(const app of applications){
 
+    // -----------------------------
+    // Patient
+    // -----------------------------
+
+    const { data: patient } = await supabaseClient
+        .from("application_patients")
+        .select("patient_name")
+        .eq("application_id", app.id)
+        .single();
+
+    // -----------------------------
+    // Medical
+    // -----------------------------
+
+    const { data: medical } = await supabaseClient
+        .from("medical_details")
+        .select("disease_name,hospital_name")
+        .eq("application_id", app.id)
+        .single();
+
     container.innerHTML += `
 
     <div class="card">
 
         <div class="card-content">
 
-            <h3>${app.applicant_name}</h3>
+            <div style="
+                display:inline-block;
+                background:#2E7D32;
+                color:white;
+                padding:5px 12px;
+                border-radius:20px;
+                font-size:13px;
+                margin-bottom:10px;
+            ">
 
-            <div class="info">
-
-                ₹${Number(app.required_amount).toLocaleString("en-IN")}
+                ✔ Verified
 
             </div>
 
+            <h3>${patient?.patient_name || "-"}</h3>
+
             <div class="info">
-
-                Status : ${app.status}
-
+                Disease : ${medical?.disease_name || "-"}
             </div>
+
+            <div class="info">
+                Hospital : ${medical?.hospital_name || "-"}
+            </div>
+
+            <div class="info">
+                Amount : ₹${Number(app.required_amount || 0).toLocaleString("en-IN")}
+            </div>
+
+            <button>
+
+                View Details
+
+            </button>
 
         </div>
 
