@@ -1,0 +1,3354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply | Cure Kshetra</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background:#f5f7fb;
+        }
+
+        /* nav{
+            background:#1565C0;
+            color:#fff;
+            padding:18px 8%;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        nav a{
+            color:#fff;
+            text-decoration:none;
+            margin-left:20px;
+        } */
+
+        .container{
+            max-width:900px;
+            margin:50px auto;
+            background:#fff;
+            padding:40px;
+            border-radius:12px;
+            box-shadow:0 5px 20px rgba(0,0,0,.08);
+        }
+
+        h2{
+            color:#1565C0;
+            margin-bottom:20px;
+        }
+
+        #app{
+            margin-top:20px;
+        }
+nav{
+    background:#1565C0;
+    color:white;
+    padding:18px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo h1{
+    font-size:30px;
+}
+
+.logo p{
+    font-size:13px;
+    opacity:.9;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:25px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+/* .logo p{
+    color:#666;
+    margin-top:8px;
+} */
+
+#authCard{
+    max-width:450px;
+    margin:auto;
+}
+
+.tabs{
+    display:flex;
+    margin-bottom:25px;
+    border-radius:8px;
+    overflow:hidden;
+    background:#edf2f7;
+}
+
+.tabs button{
+    flex:1;
+    padding:14px;
+    border:none;
+    cursor:pointer;
+    background:transparent;
+    font-size:16px;
+}
+
+.tabs button.active{
+    background:#1565C0;
+    color:white;
+}
+
+label{
+    display:block;
+    margin-top:18px;
+    margin-bottom:6px;
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    font-size:15px;
+}
+
+input:focus{
+    outline:none;
+    border-color:#1565C0;
+}
+
+.primary-btn{
+    width:100%;
+    margin-top:28px;
+    padding:14px;
+    background:#1565C0;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.primary-btn:hover{
+    background:#0D47A1;
+}
+
+.switch-text{
+    margin-top:20px;
+    text-align:center;
+    color:#666;
+}
+
+.switch-text span{
+    color:#1565C0;
+    cursor:pointer;
+    font-weight:bold;
+}
+.welcome-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.welcome-header h2{
+    margin:0;
+    color:#1565C0;
+    font-size:28px;
+}
+
+.welcome-header p{
+    margin-top:6px;
+    color:#666;
+}
+
+.logout-btn{
+    background:#fff;
+    border:1px solid #1565C0;
+    color:#1565C0;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.logout-btn:hover{
+    background:#1565C0;
+    color:#fff;
+}
+
+/* applicaton bar css field */
+.application-container{
+    max-width:900px;
+    margin:40px auto;
+    padding:20px;
+}
+
+.welcome-header{
+    background:#ffffff;
+    border-radius:12px;
+    padding:25px;
+    margin-bottom:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+.welcome-header h2{
+    margin:0;
+    color:#1565C0;
+}
+
+.welcome-header p{
+    margin-top:8px;
+    color:#666;
+}
+
+.progress-card{
+    background:#fff;
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.progress-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:12px;
+    font-weight:600;
+}
+
+.progress-bar{
+    width:100%;
+    height:10px;
+    background:#e5e5e5;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    width:20%;
+    height:100%;
+    background:#1565C0;
+}
+
+.step-card{
+    background:#fff;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+/* render-step 1  */
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+    margin-top:25px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.form-group label{
+    font-weight:600;
+    margin-bottom:8px;
+    color:#333;
+}
+
+.form-group input,
+.form-group select{
+    padding:12px 14px;
+    border:1px solid #d9d9d9;
+    border-radius:10px;
+    font-size:15px;
+    outline:none;
+    transition:.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus{
+    border-color:#1565C0;
+}
+
+.button-row{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:30px;
+}
+
+.primary-btn{
+    background:#1565C0;
+    color:#fff;
+    border:none;
+    padding:12px 30px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:600;
+}
+
+.primary-btn:hover{
+    background:#0d47a1;
+}
+
+@media(max-width:768px){
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+.full-width{
+    grid-column:1 / -1;
+}
+
+.form-group textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    resize:vertical;
+    font-size:15px;
+}
+
+.form-group textarea:focus{
+    outline:none;
+    border-color:#1565C0;
+}
+.patient-type-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+    margin-top:30px;
+}
+
+.patient-card{
+    position:relative;
+    border:2px solid #ddd;
+    border-radius:14px;
+    padding:22px;
+    text-align:center;
+    cursor:pointer;
+    transition:.25s;
+    min-height:180px;
+}
+.check-badge{
+    position:absolute;
+    top:12px;
+    right:12px;
+
+    width:28px;
+    height:28px;
+
+    border-radius:50%;
+
+    background:#1565C0;
+    color:white;
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    font-weight:bold;
+}
+.patient-card.active{
+    border-color:#1565C0;
+    background:#E3F2FD;
+    box-shadow:0 8px 20px rgba(21,101,192,.15);
+}
+
+
+.patient-card.active .check-badge{
+    display:flex;
+}
+.patient-card:hover{
+    border-color:#1565C0;
+    transform:translateY(-3px);
+}
+
+.patient-icon{
+    font-size:50px;
+    margin-bottom:15px;
+}
+
+.patient-card h4{
+    color:#1565C0;
+    margin-bottom:8px;
+}
+
+.patient-card p{
+    color:#666;
+}
+
+@media(max-width:768px){
+
+    .patient-type-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+#patientForm{
+    margin-top:30px;
+    animation:fadeIn .3s ease;
+}
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.selection-actions{
+
+    margin-top:30px;
+    text-align:right;
+
+}
+
+#patientTypeContinue{
+
+    width:220px;
+
+}
+
+#patientTypeContinue:disabled{
+
+    opacity:.5;
+
+    cursor:not-allowed;
+
+}
+.application-card{
+
+    background:#fff;
+    border-radius:18px;
+    padding:22px;
+    margin-bottom:25px;
+
+    box-shadow:0 8px 30px rgba(0,0,0,.08);
+
+}
+
+.status-row{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.status-badge{
+
+    padding:8px 18px;
+
+    border-radius:50px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.card-main{
+
+    display:flex;
+
+    gap:20px;
+
+}
+
+.patient-image{
+
+    width:130px;
+    height:130px;
+
+    border-radius:14px;
+
+    object-fit:cover;
+
+    flex-shrink:0;
+
+}
+
+.patient-info{
+
+    flex:1;
+
+}
+
+.patient-info h2{
+
+    color:#1565C0;
+
+    margin-bottom:6px;
+
+}
+
+.disease{
+
+    font-weight:600;
+
+    color:#333;
+
+    margin-bottom:10px;
+
+}
+
+.summary{
+
+    color:#666;
+
+    line-height:1.6;
+
+    margin-bottom:12px;
+
+}
+
+.amount{
+
+    font-size:22px;
+
+    color:#2E7D32;
+
+    font-weight:bold;
+
+    margin-top:12px;
+
+}
+
+.progress{
+
+    width:100%;
+
+    height:10px;
+
+    background:#ececec;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin:20px 0;
+
+}
+
+.progress-fill{
+
+    height:100%;
+
+}
+
+.card-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+@media(max-width:768px){
+
+    .card-main{
+
+        flex-direction:column;
+
+        align-items:center;
+
+        text-align:center;
+
+    }
+
+    .patient-image{
+
+        width:120px;
+
+        height:120px;
+
+    }
+
+    .status-row{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:10px;
+
+    }
+
+    .card-footer{
+
+        flex-direction:column;
+
+        gap:15px;
+
+    }
+
+    .card-footer button{
+
+        width:100%;
+
+    }
+
+}
+    </style>
+</head>
+<body>
+
+<nav>
+
+<div class="logo">
+<h1>Cure Kshetra</h1>
+<p>Powered by shaktiind Technologies</p>
+</div>
+
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="apply.html">Apply</a></li>
+<li><a href="profile.html">Profile</a></li>
+</ul>
+
+</nav>
+
+<div class="container">
+
+    <div id="authCard">
+
+        <div class="logo">
+            <h2>Cure Kshetra</h2>
+            <p>Secure Medical Assistance Platform</p>
+        </div>
+
+        <div class="tabs">
+            <button id="signinTab" class="active" onclick="showSignIn()">
+                Sign In
+            </button>
+
+            <button id="signupTab" onclick="showSignUp()">
+                Sign Up
+            </button>
+        </div>
+
+        <!-- ===================== -->
+        <!-- SIGN IN -->
+        <!-- ===================== -->
+
+        <form id="signinForm">
+
+            <label>Email Address</label>
+
+            <input
+                type="text"
+                id="loginIdentifier"
+                placeholder="Enter email"
+                required
+            >
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Enter password"
+                required
+            >
+
+            <button
+                type="button"
+                class="primary-btn"
+                onclick="signIn()"
+            >
+                Sign In
+            </button>
+
+            <p class="switch-text">
+                Don't have an account?
+
+                <span onclick="showSignUp()">
+                    Create Account
+                </span>
+            </p>
+
+        </form>
+
+        <!-- ===================== -->
+        <!-- SIGN UP -->
+        <!-- ===================== -->
+
+        <form id="signupForm" style="display:none;">
+
+            <label>Full Name</label>
+
+            <input
+                type="text"
+                id="fullName"
+                placeholder="Enter your full name"
+                required
+            >
+
+            <label>Username</label>
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Choose a username"
+                required
+            >
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                id="signupEmail"
+                placeholder="Enter your email"
+                required
+            >
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                id="signupPassword"
+                placeholder="Create a password"
+                required
+            >
+
+            <button
+                type="button"
+                class="primary-btn"
+                onclick="signUp()"
+            >
+                Create Account
+            </button>
+
+            <p class="switch-text">
+                Already have an account?
+
+                <span onclick="showSignIn()">
+                    Sign In
+                </span>
+            </p>
+
+        </form>
+
+    </div>
+
+   <div id="applicationForm" style="display:none;"></div>
+
+</div>
+
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<!-- <script src="js/auth.js"></script> -->
+
+<script>
+    let selectedPatientType = null;
+// const app = document.getElementById("app");
+console.log("Supabase client:", supabase);
+console.log("Supabase auth:", supabaseClient.auth);
+console.log("Window supabase:", window.supabase);
+
+function showSignIn(){
+
+    document.getElementById("signinForm").style.display="block";
+    document.getElementById("signupForm").style.display="none";
+
+    document.getElementById("signinTab").classList.add("active");
+    document.getElementById("signupTab").classList.remove("active");
+
+}
+
+function showSignUp(){
+
+    document.getElementById("signinForm").style.display="none";
+    document.getElementById("signupForm").style.display="block";
+
+    document.getElementById("signinTab").classList.remove("active");
+    document.getElementById("signupTab").classList.add("active");
+
+}
+function renderStep1(fullName,email,application=null) {
+    document.getElementById("applicationForm").innerHTML = `
+        <div class="application-container">
+
+            <div class="welcome-header">
+                <div>
+                    <h2>👋 Welcome, ${fullName}</h2>
+                    <p>Complete your beloved one's founding assistance application.</p>
+                </div>
+
+                <button class="logout-btn" onclick="logout()">
+                    Logout
+                </button>
+            </div>
+
+            <div class="progress-card">
+                <div class="progress-top">
+                    <span>Step 1 of 5</span>
+                    <span>20%</span>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+
+           <div class="step-card">
+
+    <h3>Applicant Details</h3>
+
+    <div class="form-grid">
+
+        <div class="form-group">
+            <label>Relationship to Child *</label>
+            <select id="relationship">
+                <option value="">Select Relationship</option>
+                <option>Father</option>
+                <option>Mother</option>
+                <option>Guardian</option>
+                <option>Grandparent</option>
+                <option>Sibling</option>
+                <option>Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Applicant Full Name *</label>
+            <input
+                type="text"
+                id="applicantName"
+                value="${application?.applicant_name || fullName}"
+                readonly
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Mobile Number *</label>
+            <input
+    type="tel"
+    id="mobileNumber"
+    maxlength="10"
+    placeholder="Enter mobile number"
+    value="${application?.applicant_mobile || ""}"
+>
+        </div>
+
+        <div class="form-group">
+            <label>Email Address *</label>
+            <input
+                type="email"
+                id="applicantEmail"
+                value="${application?.applicant_email || email}"
+                readonly
+            >
+        </div>
+        <div class="form-group">
+    <label>Aadhaar Number *</label>
+ <input
+    type="text"
+    id="aadhaarNumber"
+    maxlength="12"
+    placeholder="Enter 12-digit Aadhaar Number"
+    value="${application?.applicant_aadhaar || ""}"
+>
+</div>
+<div class="form-group">
+    <label>Pincode *</label>
+<input
+    type="text"
+    id="pincode"
+    maxlength="6"
+    placeholder="Enter Pincode"
+    value="${application?.applicant_pincode || ""}"
+>
+</div>
+<div class="form-group full-width">
+    <label>Current Address *</label>
+
+    <textarea
+    id="address"
+    rows="4"
+    placeholder="Enter your complete address"
+>${application?.applicant_address || ""}</textarea>
+</div>
+<div class="form-group">
+    <label>City *</label>
+    <input
+    type="text"
+    id="city"
+    placeholder="Enter City"
+    value="${application?.applicant_city || ""}"
+>
+</div>
+<div class="form-group">
+    <label>State *</label>
+
+    <select id="state">
+        <option value="">Select State</option>
+
+        <option>Andhra Pradesh</option>
+        <option>Arunachal Pradesh</option>
+        <option>Assam</option>
+        <option>Bihar</option>
+        <option>Chhattisgarh</option>
+        <option>Goa</option>
+        <option>Gujarat</option>
+        <option>Haryana</option>
+        <option>Himachal Pradesh</option>
+        <option>Jharkhand</option>
+        <option>Karnataka</option>
+        <option>Kerala</option>
+        <option>Madhya Pradesh</option>
+        <option>Maharashtra</option>
+        <option>Manipur</option>
+        <option>Meghalaya</option>
+        <option>Mizoram</option>
+        <option>Nagaland</option>
+        <option>Odisha</option>
+        <option>Punjab</option>
+        <option>Rajasthan</option>
+        <option>Sikkim</option>
+        <option>Tamil Nadu</option>
+        <option>Telangana</option>
+        <option>Tripura</option>
+        <option>Uttar Pradesh</option>
+        <option>Uttarakhand</option>
+        <option>West Bengal</option>
+
+        <option>Andaman and Nicobar Islands</option>
+        <option>Chandigarh</option>
+        <option>Dadra and Nagar Haveli and Daman and Diu</option>
+        <option>Delhi</option>
+        <option>Jammu and Kashmir</option>
+        <option>Ladakh</option>
+        <option>Lakshadweep</option>
+        <option>Puducherry</option>
+    </select>
+</div>
+
+    </div>
+
+    <div class="button-row">
+        <button
+    type="button"
+    class="primary-btn"
+    onclick="validateStep1()"
+>
+    Continue →
+</button>
+    </div>
+
+    </div>
+
+        </div>
+    `;
+
+    // Restore saved values when reopening a draft
+    if (application) {
+
+        document.getElementById("relationship").value =
+            application.relationship || "";
+
+        document.getElementById("state").value =
+            application.applicant_state || "";
+
+    }
+
+}
+function validateStep1() {
+
+    const relationship = document.getElementById("relationship").value.trim();
+    const mobile = document.getElementById("mobileNumber").value.trim();
+    const aadhaar = document.getElementById("aadhaarNumber").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const city = document.getElementById("city").value.trim();
+    const state = document.getElementById("state").value.trim();
+    const pincode = document.getElementById("pincode").value.trim();
+
+    if (!relationship) {
+        alert("Please select your relationship to the child.");
+        return;
+    }
+
+    if (!/^[0-9]{10}$/.test(mobile)) {
+        alert("Please enter a valid 10-digit mobile number.");
+        return;
+    }
+
+    if (!/^[0-9]{12}$/.test(aadhaar)) {
+        alert("Please enter a valid 12-digit Aadhaar number.");
+        return;
+    }
+
+    if (!address) {
+        alert("Please enter your address.");
+        return;
+    }
+
+    if (!city) {
+        alert("Please enter your city.");
+        return;
+    }
+
+    if (!state) {
+        alert("Please enter your state.");
+        return;
+    }
+
+    if (!/^[0-9]{6}$/.test(pincode)) {
+        alert("Please enter a valid 6-digit pincode.");
+        return;
+    }
+
+    // Everything is valid
+    // alert("Validation successful!");
+    saveStep1();
+
+    // Next step
+    // saveStep1();
+
+}
+async function saveStep1() {
+
+    const { data } = await supabaseClient.auth.getSession();
+
+    if (!data.session) {
+    alert("Session expired. Please login again.");
+    return;
+}
+
+const user = data.session.user;
+
+    const relationship = document.getElementById("relationship").value;
+    const applicantName = document.getElementById("applicantName").value;
+    const mobile = document.getElementById("mobileNumber").value;
+    const email = document.getElementById("applicantEmail").value;
+    const aadhaar = document.getElementById("aadhaarNumber").value;
+    const address = document.getElementById("address").value;
+    const city = document.getElementById("city").value;
+    const state = document.getElementById("state").value;
+    const pincode = document.getElementById("pincode").value;
+
+    // -----------------------------------
+    // Check if draft already exists
+    // -----------------------------------
+
+    const { data: existingApplication } = await supabaseClient
+        .from("applications")
+        .select("*")
+        .eq("created_by", user.id)
+        .eq("status", "draft")
+        .maybeSingle();
+
+    let application;
+    let error;
+
+    // -----------------------------------
+    // UPDATE existing draft
+    // -----------------------------------
+
+    if (existingApplication) {
+
+        const result = await supabaseClient
+            .from("applications")
+            .update({
+
+                relationship: relationship,
+                applicant_name: applicantName,
+                applicant_mobile: mobile,
+                applicant_email: email,
+                applicant_aadhaar: aadhaar,
+                applicant_address: address,
+                applicant_city: city,
+                applicant_state: state,
+                applicant_pincode: pincode,
+
+                current_step: 2
+
+            })
+            .eq("id", existingApplication.id)
+            .select()
+            .single();
+
+        application = result.data;
+        error = result.error;
+
+    }
+
+    // -----------------------------------
+    // CREATE new draft
+    // -----------------------------------
+
+    else {
+
+        const result = await supabaseClient
+            .from("applications")
+            .insert({
+
+                created_by: user.id,
+
+                relationship: relationship,
+                applicant_name: applicantName,
+                applicant_mobile: mobile,
+                applicant_email: email,
+                applicant_aadhaar: aadhaar,
+                applicant_address: address,
+                applicant_city: city,
+                applicant_state: state,
+                applicant_pincode: pincode,
+
+                status: "draft",
+                current_step: 2
+
+            })
+            .select()
+            .single();
+
+        application = result.data;
+        error = result.error;
+
+    }
+
+    if (error) {
+        console.error(error);
+        alert(error.message);
+        return;
+    }
+
+    console.log(application);
+
+    renderStep2(application.id);
+
+}
+// let selectedPatientType = null;
+
+function selectPatientType(type){
+
+    selectedPatientType = type;
+
+    document.getElementById("humanCard").classList.remove("active");
+    document.getElementById("petCard").classList.remove("active");
+
+    if(type === "Human"){
+        document.getElementById("humanCard").classList.add("active");
+    }else{
+        document.getElementById("petCard").classList.add("active");
+    }
+
+    document.getElementById("patientTypeContinue").disabled = false;
+}
+function continuePatientType(applicationId){
+
+    document.querySelector(".patient-type-grid").style.display = "none";
+    document.querySelector(".selection-actions").style.display = "none";
+
+    if(selectedPatientType === "Human"){
+
+        renderHumanForm(applicationId);
+
+    }else{
+
+        renderPetForm(applicationId);
+
+    }
+
+}
+function renderStep2(applicationId) {
+
+    document.getElementById("applicationForm").innerHTML = `
+    
+    <div class="application-container">
+
+        <div class="welcome-header">
+            <div>
+                <h2>Patient Details</h2>
+                <p>Step 2 of 5 - Tell us about the person or pet needing Funding for medical assistance.</p>
+            </div>
+
+            <button class="logout-btn" onclick="logout()">
+                Logout
+            </button>
+        </div>
+
+        <div class="progress-card">
+
+            <div class="progress-top">
+                <span>Step 2 of 5</span>
+                <span>40%</span>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" style="width:40%;"></div>
+            </div>
+
+        </div>
+
+        <div class="step-card">
+             <h3>Choose Your Beloved Ones Who Need Fund medical assistance?</h3>
+
+
+            <div class="patient-type-grid">
+
+                <div id="humanCard"
+                     class="patient-card"
+                     onclick="selectPatientType('Human', '${applicationId}')">
+                    <div class="check-badge">✓</div>
+                    <div class="patient-icon">👤</div>
+
+                    <h4>Human</h4>
+
+                    <p>Family Member</p>
+
+                </div>
+
+                <div id="petCard"
+                class="patient-card"
+                     onclick="selectPatientType('Pet', '${applicationId}')">
+                    <div class="check-badge">✓</div>
+                    <div class="patient-icon">🐾</div>
+
+                    <h4>Pet</h4>
+
+                    <p>Companion Animal</p>
+
+                </div>
+
+            </div>
+<div class="selection-actions">
+
+    <button
+        id="patientTypeContinue"
+        class="primary-btn"
+        disabled
+        onclick="continuePatientType('${applicationId}')">
+
+        Continue →
+
+    </button>
+
+</div>
+            <div id="patientForm"></div>
+
+        </div>
+
+    </div>
+    `;
+}
+
+// function selectPatientType(type, applicationId){
+
+//     const humanCard = document.getElementById("humanCard");
+//     const petCard = document.getElementById("petCard");
+
+//     humanCard.classList.remove("active");
+//     petCard.classList.remove("active");
+
+//     if(type === "Human"){
+//         humanCard.classList.add("active");
+
+//         renderHumanForm(applicationId);
+
+//     }else{
+
+//         petCard.classList.add("active");
+
+//         renderPetForm(applicationId);
+
+//     }
+
+// }
+function renderHumanForm(applicationId){
+
+    document.getElementById("patientForm").innerHTML = `
+        <div class="step-card">
+
+    <h3>Patient Details</h3>
+
+    <div class="form-grid">
+
+        <div class="form-group">
+            <label>Patient Full Name *</label>
+            <input
+                type="text"
+                id="patientName"
+                placeholder="Enter patient's full name">
+        </div>
+
+        <div class="form-group">
+            <label>Gender *</label>
+            <select id="patientGender">
+                <option value="">Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Age *</label>
+            <input
+                type="number"
+                id="patientAge"
+                placeholder="Enter age">
+        </div>
+
+        <div class="form-group">
+            <label>Date of Birth</label>
+            <input
+                type="date"
+                id="patientDob">
+        </div>
+
+        <div class="form-group">
+            <label>Aadhaar Number</label>
+            <input
+                type="text"
+                id="patientAadhaar"
+                maxlength = "12"
+                placeholder="12-digit Aadhaar">
+                
+        </div>
+
+        <div class="form-group">
+            <label>Blood Group</label>
+            <select id="bloodGroup">
+                <option value="">Select Blood Group</option>
+                <option>A+</option>
+                <option>A-</option>
+                <option>B+</option>
+                <option>B-</option>
+                <option>AB+</option>
+                <option>AB-</option>
+                <option>O+</option>
+                <option>O-</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Height (cm)</label>
+            <input
+                type="number"
+                id="heightCm">
+        </div>
+
+        <div class="form-group">
+            <label>Weight (kg)</label>
+            <input
+                type="number"
+                id="weightKg">
+        </div>
+
+    </div>
+
+    <button
+        class="primary-btn"
+        onclick="validateHumanStep('${applicationId}')">
+
+        Continue →
+
+    </button>
+
+</div>
+    `;
+
+}
+function renderPetForm(applicationId){
+
+    document.getElementById("patientForm").innerHTML = `
+        <div class="step-card">
+
+    <h3>Pet Details</h3>
+
+    <div class="form-grid">
+
+        <div class="form-group">
+            <label>Pet Name *</label>
+            <input
+                type="text"
+                id="petName">
+        </div>
+
+        <div class="form-group">
+            <label>Animal Type *</label>
+
+            <select id="animalType">
+
+                <option value="">Select</option>
+
+                <option>Dog</option>
+                <option>Cat</option>
+                <option>Cow</option>
+                <option>Buffalo</option>
+                <option>Goat</option>
+                <option>Horse</option>
+                <option>Rabbit</option>
+                <option>Bird</option>
+                <option>Other</option>
+
+            </select>
+
+        </div>
+
+        <div class="form-group">
+            <label>Breed</label>
+            <input
+                type="text"
+                id="breed">
+        </div>
+
+        <div class="form-group">
+            <label>Gender *</label>
+
+            <select id="petGender">
+                <option value="">Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+
+        </div>
+
+        <div class="form-group">
+            <label>Age *</label>
+            <input
+                type="number"
+                id="petAge">
+        </div>
+
+        <div class="form-group">
+            <label>Weight (kg)</label>
+            <input
+                type="number"
+                id="petWeight">
+        </div>
+
+        <div class="form-group full-width">
+            <label>Identification Marks</label>
+
+            <textarea
+                id="identificationMarks"
+                rows="3"></textarea>
+        </div>
+
+    </div>
+
+    <button
+        class="primary-btn"
+        onclick="validatePetStep('${applicationId}')">
+
+        Continue →
+
+    </button>
+
+</div>
+    `;
+
+}
+function validateHumanStep(applicationId){
+
+    const patientName =
+        document.getElementById("patientName").value.trim();
+
+    const gender =
+        document.getElementById("patientGender").value;
+
+    const age =
+        document.getElementById("patientAge").value.trim();
+
+    const dob =
+        document.getElementById("patientDob").value;
+
+    const aadhaar =
+        document.getElementById("patientAadhaar").value.trim();
+
+    const bloodGroup =
+        document.getElementById("bloodGroup").value;
+
+    const height =
+        document.getElementById("heightCm").value.trim();
+
+    const weight =
+        document.getElementById("weightKg").value.trim();
+
+
+    if(!patientName){
+
+        alert("Please enter patient name.");
+        return;
+
+    }
+
+    if(!gender){
+
+        alert("Please select gender.");
+        return;
+
+    }
+
+    if(!age){
+
+        alert("Please enter age.");
+        return;
+
+    }
+
+    if(age <= 0){
+
+        alert("Age must be greater than zero.");
+        return;
+
+    }
+
+    if(aadhaar && !/^[0-9]{12}$/.test(aadhaar)){
+
+        alert("Aadhaar must contain exactly 12 digits.");
+        return;
+
+    }
+
+    saveStep2(applicationId,"Human");
+
+}
+function validatePetStep(applicationId){
+
+    const petName =
+        document.getElementById("petName").value.trim();
+
+    const animalType =
+        document.getElementById("animalType").value;
+
+    const breed =
+        document.getElementById("breed").value.trim();
+
+    const gender =
+        document.getElementById("petGender").value;
+
+    const age =
+        document.getElementById("petAge").value.trim();
+
+    const weight =
+        document.getElementById("petWeight").value.trim();
+
+    const marks =
+        document.getElementById("identificationMarks").value.trim();
+
+
+    if(!petName){
+
+        alert("Please enter pet name.");
+        return;
+
+    }
+
+    if(!animalType){
+
+        alert("Please select animal type.");
+        return;
+
+    }
+
+    if(!gender){
+
+        alert("Please select gender.");
+        return;
+
+    }
+
+    if(!age){
+
+        alert("Please enter age.");
+        return;
+
+    }
+
+    if(age <= 0){
+
+        alert("Age must be greater than zero.");
+        return;
+
+    }
+
+    saveStep2(applicationId,"Pet");
+
+}
+async function saveStep2(applicationId, patientType){
+
+    let patientData = {
+
+        application_id: applicationId,
+
+        patient_type: patientType
+
+    };
+
+    if(patientType === "Human"){
+
+        patientData.patient_name =
+            document.getElementById("patientName").value.trim();
+
+        patientData.gender =
+            document.getElementById("patientGender").value;
+
+        patientData.age =
+            parseInt(document.getElementById("patientAge").value);
+
+        patientData.date_of_birth =
+            document.getElementById("patientDob").value || null;
+
+        patientData.aadhaar_number =
+            document.getElementById("patientAadhaar").value.trim() || null;
+
+        patientData.blood_group =
+            document.getElementById("bloodGroup").value || null;
+
+        patientData.height_cm =
+            document.getElementById("heightCm").value || null;
+
+        patientData.weight_kg =
+            document.getElementById("weightKg").value || null;
+
+    }else{
+
+        patientData.patient_name =
+            document.getElementById("petName").value.trim();
+
+        patientData.animal_type =
+            document.getElementById("animalType").value;
+
+        patientData.breed =
+            document.getElementById("breed").value.trim() || null;
+
+        patientData.gender =
+            document.getElementById("petGender").value;
+
+        patientData.age =
+            parseInt(document.getElementById("petAge").value);
+
+        patientData.weight_kg =
+            document.getElementById("petWeight").value || null;
+
+        patientData.identification_marks =
+            document.getElementById("identificationMarks").value.trim() || null;
+
+    }
+
+    // ----------------------------------
+    // Check if patient already exists
+    // ----------------------------------
+
+    const { data: existingPatient } = await supabaseClient
+        .from("application_patients")
+        .select("*")
+        .eq("application_id", applicationId)
+        .maybeSingle();
+
+    let error;
+
+    // ----------------------------------
+    // UPDATE
+    // ----------------------------------
+
+    if(existingPatient){
+
+        const result = await supabaseClient
+            .from("application_patients")
+            .update({
+
+                patient_type: patientData.patient_type,
+
+                patient_name: patientData.patient_name,
+
+                gender: patientData.gender,
+
+                age: patientData.age,
+
+                date_of_birth: patientData.date_of_birth,
+
+                aadhaar_number: patientData.aadhaar_number,
+
+                blood_group: patientData.blood_group,
+
+                height_cm: patientData.height_cm,
+
+                weight_kg: patientData.weight_kg,
+
+                animal_type: patientData.animal_type,
+
+                breed: patientData.breed,
+
+                identification_marks: patientData.identification_marks
+
+            })
+            .eq("id", existingPatient.id);
+
+        error = result.error;
+
+    }
+
+    // ----------------------------------
+    // INSERT
+    // ----------------------------------
+
+    else{
+
+        const result = await supabaseClient
+            .from("application_patients")
+            .insert(patientData);
+
+        error = result.error;
+
+    }
+
+    if(error){
+
+        console.error(error);
+
+        alert(error.message);
+
+        return;
+
+    }
+
+    // ----------------------------------
+    // Move to Step 3
+    // ----------------------------------
+
+    const { error: updateError } = await supabaseClient
+        .from("applications")
+        .update({
+            current_step: 3
+        })
+        .eq("id", applicationId);
+
+    if(updateError){
+
+        console.error(updateError);
+
+        alert(updateError.message);
+
+        return;
+
+    }
+
+    alert("Patient details saved successfully!");
+
+    renderStep3(applicationId);
+
+}
+function renderStep3(applicationId){
+
+    document.getElementById("applicationForm").innerHTML = `
+
+    <div class="application-container">
+
+        <div class="welcome-header">
+
+            <div>
+                <h2>Medical Details</h2>
+                <p>Step 3 of 5 - Tell us about the medical condition.</p>
+            </div>
+
+            <button
+                class="logout-btn"
+                onclick="logout()">
+                Logout
+            </button>
+
+        </div>
+
+        <div class="progress-card">
+
+            <div class="progress-top">
+                <span>Step 3 of 5</span>
+                <span>60%</span>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" style="width:60%;"></div>
+            </div>
+
+        </div>
+
+        <div class="step-card">
+
+            <h3>Medical Details</h3>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Disease Name *</label>
+
+                    <input
+                        type="text"
+                        id="diseaseName"
+                        placeholder="Enter disease name">
+                </div>
+
+                <div class="form-group">
+                    <label>Since When? *</label>
+
+                    <input
+                        type="text"
+                        id="diseaseDuration"
+                        placeholder="Example: Since Birth / 6 Months / 1 Year">
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Hospital / Clinic Name *</label>
+
+                    <input
+                        type="text"
+                        id="hospitalName"
+                        placeholder="Enter hospital or clinic name">
+                </div>
+
+                <div class="form-group full-width">
+
+                    <label>Medical Summary *</label>
+
+                    <textarea
+                        id="medicalSummary"
+                        rows="6"
+                        placeholder="Briefly explain the patient's medical condition, doctor's diagnosis, treatment advised and why financial assistance is required."></textarea>
+
+                </div>
+
+            </div>
+
+            <div class="button-row">
+
+                <button
+                    class="primary-btn"
+                    onclick="validateStep3('${applicationId}')">
+
+                    Continue →
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    `;
+
+}
+function validateStep3(applicationId){
+
+    const diseaseName =
+        document.getElementById("diseaseName").value.trim();
+
+    const diseaseDuration =
+        document.getElementById("diseaseDuration").value.trim();
+
+    const hospitalName =
+        document.getElementById("hospitalName").value.trim();
+
+    const medicalSummary =
+        document.getElementById("medicalSummary").value.trim();
+
+    if(!diseaseName){
+
+        alert("Please enter the disease name.");
+        return;
+
+    }
+
+    if(!diseaseDuration){
+
+        alert("Please enter since when the patient has this condition.");
+        return;
+
+    }
+
+    if(!hospitalName){
+
+        alert("Please enter the hospital or clinic name.");
+        return;
+
+    }
+
+    if(!medicalSummary){
+
+        alert("Please enter the medical summary.");
+        return;
+
+    }
+
+    saveStep3(applicationId);
+
+}
+async function saveStep3(applicationId){
+
+    const medicalData = {
+
+        application_id: applicationId,
+
+        disease_name:
+            document.getElementById("diseaseName").value.trim(),
+
+        disease_duration:
+            document.getElementById("diseaseDuration").value.trim(),
+
+        hospital_name:
+            document.getElementById("hospitalName").value.trim(),
+
+        medical_summary:
+            document.getElementById("medicalSummary").value.trim()
+
+    };
+
+    // ----------------------------------
+    // Check if medical details exist
+    // ----------------------------------
+
+    const { data: existingMedical } = await supabaseClient
+        .from("medical_details")
+        .select("*")
+        .eq("application_id", applicationId)
+        .maybeSingle();
+
+    let error;
+
+    // ----------------------------------
+    // UPDATE
+    // ----------------------------------
+
+    if(existingMedical){
+
+        const result = await supabaseClient
+            .from("medical_details")
+            .update({
+
+                disease_name: medicalData.disease_name,
+
+                disease_duration: medicalData.disease_duration,
+
+                hospital_name: medicalData.hospital_name,
+
+                medical_summary: medicalData.medical_summary,
+
+                updated_at: new Date().toISOString()
+
+            })
+            .eq("id", existingMedical.id);
+
+        error = result.error;
+
+    }
+
+    // ----------------------------------
+    // INSERT
+    // ----------------------------------
+
+    else{
+
+        const result = await supabaseClient
+            .from("medical_details")
+            .insert(medicalData);
+
+        error = result.error;
+
+    }
+
+    if(error){
+
+        console.error(error);
+
+        alert(error.message);
+
+        return;
+
+    }
+
+    // ----------------------------------
+    // Move to Step 4
+    // ----------------------------------
+
+    const { error: updateError } = await supabaseClient
+        .from("applications")
+        .update({
+            current_step: 4
+        })
+        .eq("id", applicationId);
+
+    if(updateError){
+
+        console.error(updateError);
+
+        alert(updateError.message);
+
+        return;
+
+    }
+
+    alert("Medical details saved successfully!");
+
+    renderStep4(applicationId);
+
+}
+function renderStep4(applicationId){
+
+    document.getElementById("applicationForm").innerHTML = `
+
+    <div class="application-container">
+
+        <div class="welcome-header">
+
+            <div>
+                <h2>Upload Medical Documents</h2>
+                <p>Step 4 of 5 - Upload the required supporting documents.</p>
+            </div>
+
+            <button
+                class="logout-btn"
+                onclick="logout()">
+                Logout
+            </button>
+
+        </div>
+
+        <div class="progress-card">
+
+            <div class="progress-top">
+                <span>Step 4 of 5</span>
+                <span>80%</span>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" style="width:80%;"></div>
+            </div>
+
+        </div>
+
+        <div class="step-card">
+
+            <h3>Required Documents</h3>
+
+            <div class="form-grid">
+
+                <div class="form-group full-width">
+
+                    <label id="patientPhotoLabel">
+                        Patient Photograph *
+                    </label>
+
+                    <input
+                        type="file"
+                        id="patientPhoto"
+                        accept=".jpg,.jpeg,.png,.webp">
+
+                </div>
+
+                <div class="form-group full-width">
+
+                    <label>
+                        Hospital Verified Disease Document *
+                    </label>
+
+                    <input
+                        type="file"
+                        id="diseaseDocument"
+                        accept=".pdf,.jpg,.jpeg,.png">
+
+                </div>
+
+                <div class="form-group full-width">
+
+                    <label>
+                        Doctor Prescription *
+                    </label>
+
+                    <input
+                        type="file"
+                        id="doctorPrescription"
+                        accept=".pdf,.jpg,.jpeg,.png">
+
+                </div>
+
+                <div class="form-group full-width">
+
+                    <label>
+                        Medical Reports (Optional)
+                    </label>
+
+                    <input
+                        type="file"
+                        id="medicalReports"
+                        accept=".pdf,.jpg,.jpeg,.png"
+                        multiple>
+
+                </div>
+
+                <div class="form-group full-width">
+
+                    <label id="identityLabel">
+                        Aadhaar Card *
+                    </label>
+
+                    <input
+                        type="file"
+                        id="identityDocument"
+                        accept=".pdf,.jpg,.jpeg,.png">
+
+                </div>
+
+            </div>
+
+            <div class="button-row">
+
+                <button
+                    class="primary-btn"
+                    onclick="validateStep4('${applicationId}')">
+
+                    Continue →
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    `;
+
+    loadStep4Labels(applicationId);
+
+}
+async function loadStep4Labels(applicationId){
+
+    const { data: patient } = await supabaseClient
+        .from("application_patients")
+        .select("patient_name, patient_type")
+        .eq("application_id", applicationId)
+        .single();
+
+    if(!patient) return;
+
+    if(patient.patient_type === "Human"){
+
+        document.getElementById("patientPhotoLabel").innerText =
+            `Patient Photograph (${patient.patient_name}) *`;
+
+        document.getElementById("identityLabel").innerText =
+            "Patient / Guardian Aadhaar Card *";
+
+    }else{
+
+        document.getElementById("patientPhotoLabel").innerText =
+            `Pet Photograph (${patient.patient_name}) *`;
+
+        document.getElementById("identityLabel").innerText =
+            "Pet Registration / Hospital Card *";
+
+    }
+
+}
+function validateStep4(applicationId){
+
+    const patientPhoto =
+        document.getElementById("patientPhoto").files[0];
+
+    const diseaseDocument =
+        document.getElementById("diseaseDocument").files[0];
+
+    const doctorPrescription =
+        document.getElementById("doctorPrescription").files[0];
+
+    const identityDocument =
+        document.getElementById("identityDocument").files[0];
+
+    if(!patientPhoto){
+
+        alert("Please upload the patient photograph.");
+        return;
+
+    }
+
+    if(!diseaseDocument){
+
+        alert("Please upload the hospital verified disease document.");
+        return;
+
+    }
+
+    if(!doctorPrescription){
+
+        alert("Please upload the doctor's prescription.");
+        return;
+
+    }
+
+    if(!identityDocument){
+
+        alert("Please upload the identity document.");
+        return;
+
+    }
+
+    saveStep4(applicationId);
+
+}
+async function saveStep4(applicationId){
+
+    const patientPhoto =
+        document.getElementById("patientPhoto").files[0];
+
+    const diseaseDocument =
+        document.getElementById("diseaseDocument").files[0];
+
+    const doctorPrescription =
+        document.getElementById("doctorPrescription").files[0];
+
+    const identityDocument =
+        document.getElementById("identityDocument").files[0];
+
+    const medicalReports =
+        document.getElementById("medicalReports").files;
+
+    const folder = applicationId;
+
+    // ---------- Upload Helper ----------
+
+    async function upload(file, path){
+
+    console.log("Uploading:", path);
+
+    const { data, error } = await supabaseClient.storage
+        .from("medical-documents")
+        .upload(path, file, {
+            upsert: true
+        });
+
+    console.log("Upload Data:", data);
+    console.log("Upload Error:", error);
+
+    if(error){
+        throw error;
+    }
+
+    return path;
+
+}
+
+    try{
+
+        const patientPhotoPath =
+            await upload(
+                patientPhoto,
+                `${folder}/patient-photo.${patientPhoto.name.split(".").pop()}`
+            );
+
+        const diseaseDocumentPath =
+            await upload(
+                diseaseDocument,
+                `${folder}/disease-document.${diseaseDocument.name.split(".").pop()}`
+            );
+
+        const doctorPrescriptionPath =
+            await upload(
+                doctorPrescription,
+                `${folder}/doctor-prescription.${doctorPrescription.name.split(".").pop()}`
+            );
+
+        const identityDocumentPath =
+            await upload(
+                identityDocument,
+                `${folder}/identity-document.${identityDocument.name.split(".").pop()}`
+            );
+
+        // ---------- Multiple Reports ----------
+
+        const reportPaths = [];
+
+        for(const report of medicalReports){
+
+            const reportPath =
+                `${folder}/reports/${Date.now()}-${report.name}`;
+
+            await upload(report, reportPath);
+
+            reportPaths.push(reportPath);
+
+        }
+
+        // ---------- Existing Row ----------
+
+        const { data: existing } = await supabaseClient
+            .from("medical_documents")
+            .select("*")
+            .eq("application_id", applicationId)
+            .maybeSingle();
+
+        let error;
+
+        if(existing){
+
+            const result = await supabaseClient
+                .from("medical_documents")
+                .update({
+
+                    patient_photo: patientPhotoPath,
+
+                    disease_document: diseaseDocumentPath,
+
+                    doctor_prescription: doctorPrescriptionPath,
+
+                    identity_document: identityDocumentPath,
+
+                    medical_reports: reportPaths,
+
+                    updated_at: new Date().toISOString()
+
+                })
+                .eq("id", existing.id);
+
+            error = result.error;
+
+        }else{
+
+            const result = await supabaseClient
+                .from("medical_documents")
+                .insert({
+
+                    application_id: applicationId,
+
+                    patient_photo: patientPhotoPath,
+
+                    disease_document: diseaseDocumentPath,
+
+                    doctor_prescription: doctorPrescriptionPath,
+
+                    identity_document: identityDocumentPath,
+
+                    medical_reports: reportPaths
+
+                });
+
+            error = result.error;
+
+        }
+
+        if(error){
+
+            alert(error.message);
+
+            return;
+
+        }
+
+        // ---------- Next Step ----------
+
+        const { error: updateError } = await supabaseClient
+            .from("applications")
+            .update({
+
+                current_step: 5
+
+            })
+            .eq("id", applicationId);
+
+        if(updateError){
+
+            alert(updateError.message);
+
+            return;
+
+        }
+
+        alert("Documents uploaded successfully!");
+
+        renderStep5(applicationId);
+
+    }catch(err){
+
+    console.error(err);
+
+    console.log(err);
+
+    alert(JSON.stringify(err));
+
+}
+
+}
+function renderStep5(applicationId){
+
+    document.getElementById("applicationForm").innerHTML = `
+
+    <div class="application-container">
+
+        <div class="welcome-header">
+
+            <div>
+                <h2>Bank Details</h2>
+                <p>Step 5 of 5 - Enter your bank details to receive donations directly.</p>
+            </div>
+
+            <button
+                class="logout-btn"
+                onclick="logout()">
+
+                Logout
+
+            </button>
+
+        </div>
+
+        <div class="progress-card">
+
+            <div class="progress-top">
+
+                <span>Step 5 of 5</span>
+
+                <span>100%</span>
+
+            </div>
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill"
+                    style="width:100%;">
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="step-card">
+<h3>Funding Details</h3>
+
+<div class="form-grid">
+
+    <div class="form-group full-width">
+
+        <label>Required Amount (₹) *</label>
+
+        <input
+            type="number"
+            id="requiredAmount"
+            min="1"
+            placeholder="Example: 500000">
+
+        <small style="color:#666;margin-top:6px;display:block;">
+            Enter the amount still required for the patient's treatment.
+        </small>
+
+    </div>
+
+</div>
+
+<hr style="margin:35px 0;border:none;border-top:1px solid #eee;">
+
+<h3>Bank Account Details</h3>
+            <h3>Bank Account Details</h3>
+
+            <div class="form-grid">
+
+                <div class="form-group full-width">
+
+                    <label>Account Holder Name *</label>
+
+                    <input
+                        type="text"
+                        id="accountHolderName"
+                        placeholder="Enter account holder name">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Bank Name *</label>
+
+                    <input
+                        type="text"
+                        id="bankName"
+                        placeholder="Enter bank name">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>IFSC Code *</label>
+
+                    <input
+                        type="text"
+                        id="ifscCode"
+                        placeholder="Example: SBIN0001234">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Account Number *</label>
+
+                    <input
+                        type="text"
+                        id="accountNumber"
+                        placeholder="Enter account number">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Confirm Account Number *</label>
+
+                    <input
+                        type="text"
+                        id="confirmAccountNumber"
+                        placeholder="Re-enter account number">
+
+                </div>
+
+                <div class="form-group full-width">
+
+                    <label>UPI ID (Optional)</label>
+
+                    <input
+                        type="text"
+                        id="upiId"
+                        placeholder="Example: hari@oksbi">
+
+                </div>
+
+            </div>
+
+            <div
+                style="
+                    margin-top:30px;
+                    padding:20px;
+                    border:1px solid #ddd;
+                    border-radius:10px;
+                    background:#fafafa;
+                ">
+
+                <label style="display:flex;align-items:flex-start;gap:10px;">
+
+                    <input
+                        type="checkbox"
+                        id="declaration"
+                        style="width:auto;margin-top:4px;">
+
+                    <span>
+
+                        I confirm that all the information and documents
+                        submitted are genuine and that the bank account
+                        belongs to me or my legal guardian.
+
+                    </span>
+
+                </label>
+
+            </div>
+
+            <div class="button-row">
+
+                <button
+                    class="primary-btn"
+                    onclick="validateStep5('${applicationId}')">
+
+                    Submit Application
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    `;
+
+}
+function validateStep5(applicationId){
+const requiredAmount =
+    Number(document.getElementById("requiredAmount").value);
+    const accountHolderName =
+        document.getElementById("accountHolderName").value.trim();
+
+    const bankName =
+        document.getElementById("bankName").value.trim();
+
+    const accountNumber =
+        document.getElementById("accountNumber").value.trim();
+
+    const confirmAccountNumber =
+        document.getElementById("confirmAccountNumber").value.trim();
+
+    const ifscCode =
+        document.getElementById("ifscCode").value.trim().toUpperCase();
+
+    const declaration =
+        document.getElementById("declaration").checked;
+    if(!requiredAmount || requiredAmount <= 0){
+
+    alert("Please enter the required amount.");
+
+    return;
+
+}
+    if(!accountHolderName){
+
+        alert("Please enter the account holder name.");
+        return;
+
+    }
+
+    if(!bankName){
+
+        alert("Please enter the bank name.");
+        return;
+
+    }
+
+    if(!accountNumber){
+
+        alert("Please enter the account number.");
+        return;
+
+    }
+
+    if(!confirmAccountNumber){
+
+        alert("Please confirm the account number.");
+        return;
+
+    }
+
+    if(accountNumber !== confirmAccountNumber){
+
+        alert("Account numbers do not match.");
+        return;
+
+    }
+
+    if(!/^[A-Z]{4}0[A-Z0-9]{6}$/.test(ifscCode)){
+
+        alert("Please enter a valid IFSC code.");
+
+        return;
+
+    }
+
+    if(!declaration){
+
+        alert("Please accept the declaration before submitting.");
+
+        return;
+
+    }
+
+    saveStep5(applicationId);
+
+}
+async function saveStep5(applicationId){
+    const requiredAmount =
+    Number(document.getElementById("requiredAmount").value);
+    const accountHolderName =
+        document.getElementById("accountHolderName").value.trim();
+
+    const bankName =
+        document.getElementById("bankName").value.trim();
+
+    const accountNumber =
+        document.getElementById("accountNumber").value.trim();
+
+    const ifscCode =
+        document.getElementById("ifscCode").value.trim().toUpperCase();
+
+    const upiId =
+        document.getElementById("upiId").value.trim();
+
+const { error } = await supabaseClient
+.from("applications")
+.update({
+
+    required_amount: requiredAmount,
+
+    account_holder_name: accountHolderName,
+
+    bank_name: bankName,
+
+    account_number: accountNumber,
+
+    ifsc_code: ifscCode,
+
+    upi_id: upiId || null,
+
+    status:"submitted",
+
+    current_step:6,
+
+    submitted_at:new Date().toISOString()
+
+})
+.eq("id",applicationId);
+
+    if(error){
+
+        console.error(error);
+
+        alert(error.message);
+
+        return;
+
+    }
+
+    alert("Application submitted successfully!");
+
+    renderApplicationSuccess(applicationId);
+
+}
+function renderApplicationSuccess(applicationId){
+
+    document.getElementById("applicationForm").innerHTML = `
+
+    <div class="application-container">
+
+        <div class="step-card" style="text-align:center;">
+
+            <div style="font-size:70px;">
+                🎉
+            </div>
+
+            <h2>
+                Application Submitted Successfully
+            </h2>
+
+            <p style="margin-top:15px;color:#666;">
+
+                Thank you for submitting your application to
+                <strong>Cure Kshetra</strong>.
+
+            </p>
+
+            <p style="margin-top:20px;">
+
+                <strong>Application ID</strong><br>
+
+                ${applicationId}
+
+            </p>
+
+            <p style="margin-top:20px;color:#1565C0;">
+
+                Your application is now under verification.
+
+            </p>
+
+            <button
+                class="primary-btn"
+                style="margin-top:30px;"
+                onclick="window.location='apply.html'">
+
+                Go to My Applications
+
+            </button>
+
+        </div>
+
+    </div>
+
+    `;
+
+}
+async function checkSession() {
+
+    const { data } = await supabaseClient.auth.getSession();
+
+    if (!data.session) {
+
+        document.getElementById("authCard").style.display = "block";
+
+        document.getElementById("applicationForm").style.display = "none";
+        document.getElementById("applicationForm").innerHTML = "";
+
+        showSignIn();
+
+        return;
+
+    }
+
+    const user = data.session.user;
+
+    const { data: profile } = await supabaseClient
+        .from("profiles")
+        .select("full_name")
+        .eq("id", user.id)
+        .single();
+
+    const fullName = profile?.full_name || user.email;
+
+    document.getElementById("authCard").style.display = "none";
+    document.getElementById("applicationForm").style.display = "block";
+
+    // -------------------------------------
+    // Load all applications
+    // -------------------------------------
+
+    const { data: applications, error } = await supabaseClient
+        .from("applications")
+        .select("*")
+        .eq("created_by", user.id)
+        .order("created_at", { ascending: false });
+
+    if (error) {
+
+        alert(error.message);
+
+        return;
+
+    }
+
+    // -------------------------------------
+    // No applications
+    // -------------------------------------
+
+    if (!applications || applications.length === 0) {
+
+        renderStep1(fullName, user.email);
+
+        return;
+
+    }
+
+    // -------------------------------------
+    // Resume latest draft if available
+    // -------------------------------------
+
+    const draftApplication =
+        applications.find(app => app.status === "draft");
+
+    if (draftApplication) {
+
+        loadApplication(
+            draftApplication,
+            fullName,
+            user.email
+        );
+
+        return;
+
+    }
+
+    // -------------------------------------
+    // Otherwise show dashboard
+    // -------------------------------------
+
+    renderMyApplications(
+        applications,
+        fullName
+    );
+
+}
+function loadApplication(application, fullName, email){
+
+    switch(application.current_step){
+
+        case 1:
+            renderStep1(
+                fullName,
+                email,
+                application
+            );
+            break;
+
+        case 2:
+            renderStep2(application.id);
+            break;
+
+        case 3:
+            renderStep3(application.id);
+            break;
+
+        // case 4:
+        //     renderStep4(application.id);
+        //     break;
+
+        default:
+            renderStep1(fullName,email);
+
+    }
+
+}
+async function renderMyApplications(applications, fullName){
+
+    let cards = "";
+
+    for(const app of applications){
+
+        // -----------------------------
+        // Patient
+        // -----------------------------
+
+        const { data: patient } = await supabaseClient
+            .from("application_patients")
+            .select("patient_name, patient_type")
+            .eq("application_id", app.id)
+            .maybeSingle();
+
+        // -----------------------------
+        // Medical Details
+        // -----------------------------
+
+        const { data: medical } = await supabaseClient
+            .from("medical_details")
+            .select("disease_name,hospital_name,medical_summary")
+            .eq("application_id", app.id)
+            .maybeSingle();
+
+        // -----------------------------
+        // Documents
+        // -----------------------------
+
+        const { data: documents } = await supabaseClient
+            .from("medical_documents")
+            .select("patient_photo")
+            .eq("application_id", app.id)
+            .maybeSingle();
+
+        // -----------------------------
+        // Patient Image
+        // -----------------------------
+
+        let imageUrl = "images/default-patient.png";
+
+        if(documents?.patient_photo){
+
+            const { data } = await supabaseClient
+                .storage
+                .from("medical-documents")
+                .createSignedUrl(
+                    documents.patient_photo,
+                    3600
+                );
+
+            if(data){
+                imageUrl = data.signedUrl;
+            }
+
+        }
+
+        // -----------------------------
+        // Status
+        // -----------------------------
+
+        let badge = "";
+        let color = "#1565C0";
+        let progress = 40;
+
+        switch(app.status){
+
+            case "draft":
+                badge="🟠 Draft";
+                color="#FB8C00";
+                progress=20;
+                break;
+
+            case "submitted":
+                badge="🔵 Submitted";
+                color="#1565C0";
+                progress=40;
+                break;
+
+            case "under_review":
+                badge="🟡 Under Review";
+                color="#F9A825";
+                progress=60;
+                break;
+
+            case "approved":
+                badge="🟢 Approved";
+                color="#2E7D32";
+                progress=90;
+                break;
+
+            case "live":
+                badge="🟢 Campaign Live";
+                color="#2E7D32";
+                progress=100;
+                break;
+
+            case "rejected":
+                badge="🔴 Rejected";
+                color="#D32F2F";
+                progress=100;
+                break;
+        }
+
+       cards += `
+
+<div class="application-card">
+
+    <div class="status-row">
+
+        <div class="status-badge"
+            style="background:${color}20;color:${color};">
+
+            ${badge}
+
+        </div>
+
+        <small>
+
+            Submitted
+
+            ${
+                app.submitted_at
+                ? new Date(app.submitted_at).toLocaleDateString()
+                : "-"
+            }
+
+        </small>
+
+    </div>
+
+    <div class="card-main">
+
+        <img
+            src="${imageUrl}"
+            class="patient-image">
+
+        <div class="patient-info">
+
+            <h2>
+
+                ${patient?.patient_name || "Patient"}
+
+            </h2>
+
+            <div class="disease">
+
+                ${medical?.disease_name || "-"}
+
+            </div>
+
+            <div style="color:#666;margin-bottom:10px;">
+
+                🏥 ${medical?.hospital_name || "-"}
+
+            </div>
+
+            <div class="summary">
+
+                ${
+                    medical?.medical_summary
+                    ? medical.medical_summary.substring(0,150) + "..."
+                    : "No medical summary available."
+                }
+
+            </div>
+
+            <div class="amount">
+
+                ₹${Number(app.required_amount || 0).toLocaleString("en-IN")}
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="progress">
+
+        <div
+            class="progress-fill"
+            style="width:${progress}%;background:${color};">
+
+        </div>
+
+    </div>
+
+    <div class="card-footer">
+
+        <span>
+
+            ${progress}% Completed
+
+        </span>
+
+        <button
+            class="primary-btn"
+            style="width:auto;"
+            onclick="viewApplication('${app.id}')">
+
+            View Details
+
+        </button>
+
+    </div>
+
+</div>
+
+`;
+
+    }
+
+    document.getElementById("applicationForm").innerHTML = `
+
+    <div class="application-container">
+
+        <div class="welcome-header">
+
+            <div>
+
+                <h2>Welcome, ${fullName} 👋</h2>
+
+                <p>
+                    Track your medical assistance applications.
+                </p>
+
+            </div>
+
+            <button
+                class="logout-btn"
+                onclick="logout()">
+
+                Logout
+
+            </button>
+
+        </div>
+
+        <div class="step-card" style="margin-bottom:25px;">
+
+            <div style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                flex-wrap:wrap;
+                gap:20px;
+            ">
+
+                <div>
+
+                    <h2>My Applications</h2>
+
+                    <p>
+
+                        Total Applications :
+                        <strong>${applications.length}</strong>
+
+                    </p>
+
+                </div>
+
+                <button
+                    class="primary-btn"
+                    style="width:auto;"
+                    onclick="startNewApplication()">
+
+                    + Apply for New Applicant
+
+                </button>
+
+            </div>
+
+        </div>
+
+        ${cards}
+
+    </div>
+
+    `;
+
+}
+async function startNewApplication(){
+
+    const { data } = await supabaseClient.auth.getSession();
+
+    const user = data.session.user;
+
+    const { data: profile } = await supabaseClient
+        .from("profiles")
+        .select("full_name")
+        .eq("id", user.id)
+        .single();
+
+    renderStep1(
+        profile.full_name,
+        user.email,
+        null
+    );
+
+}
+// function showLogin() {
+
+//     app.innerHTML = `
+
+//         <h3>Login to Continue</h3>
+
+//         <br>
+
+//         <input
+//             id="email"
+//             type="email"
+//             placeholder="Email"
+//             style="width:100%;padding:12px;margin-bottom:15px;"
+//         >
+
+//         <input
+//             id="password"
+//             type="password"
+//             placeholder="Password"
+//             style="width:100%;padding:12px;margin-bottom:20px;"
+//         >
+
+//         <button onclick="signIn()">Sign In</button>
+
+//         <button
+//             onclick="signUp()"
+//             style="margin-top:10px;background:#2E7D32;"
+//         >
+//             Sign Up
+//         </button>
+
+//     `;
+// }
+
+async function signUp() {
+
+    const fullName = document.getElementById("fullName").value.trim();
+    const username = document.getElementById("username").value.trim();
+    const email = document.getElementById("signupEmail").value.trim().toLowerCase();
+    const password = document.getElementById("signupPassword").value;
+
+    // Validation
+    if (!fullName || !username || !email || !password) {
+        alert("Please fill all fields.");
+        return;
+    }
+
+    // Check if username already exists
+    const { data: existingUser, error: usernameError } = await supabaseClient
+        .from("profiles")
+        .select("username")
+        .eq("username", username)
+        .maybeSingle();
+
+    if (usernameError) {
+        alert(usernameError.message);
+        return;
+    }
+
+    if (existingUser) {
+        alert("Username already exists. Please choose another.");
+        return;
+    }
+
+    // Create Auth User
+    const { data, error } = await supabaseClient.auth.signUp({
+        email,
+        password
+    });
+
+    if (error) {
+        alert(error.message);
+        return;
+    }
+
+    // Save profile
+    const { error: profileError } = await supabaseClient
+        .from("profiles")
+        .insert({
+            id: data.user.id,
+            full_name: fullName,
+            username: username,
+            email: email
+        });
+
+    if (profileError) {
+        alert(profileError.message);
+        return;
+    }
+
+    alert("Account created successfully!");
+
+    // Refresh session/UI
+    checkSession();
+}
+
+async function signIn() {
+
+    const email =
+        document.getElementById("loginIdentifier").value.trim().toLowerCase();
+
+    const password =
+        document.getElementById("loginPassword").value;
+
+    const { error } = await supabaseClient.auth.signInWithPassword({
+        email,
+        password
+    });
+
+    if (error) {
+        alert(error.message);
+        return;
+    }
+
+    checkSession();
+
+}
+
+async function logout() {
+
+    const { error } = await supabaseClient.auth.signOut();
+
+    if (error) {
+        alert(error.message);
+        return;
+    }
+
+    // Reset forms
+    document.getElementById("signinForm").reset();
+    document.getElementById("signupForm").reset();
+
+    // Hide application
+    document.getElementById("applicationForm").style.display = "none";
+    document.getElementById("applicationForm").innerHTML = "";
+
+    // Show authentication card
+    document.getElementById("authCard").style.display = "block";
+
+    // Default to Sign In tab
+    showSignIn();
+
+    // Clear temporary variables
+    selectedPatientType = null;
+
+}
+
+checkSession();
+
+</script>
+
+</body>
+</html>

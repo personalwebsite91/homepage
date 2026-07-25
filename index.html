@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cure Kshetra</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+}
+
+/* Navbar */
+
+nav{
+    background:#1565C0;
+    color:white;
+    padding:18px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo h1{
+    font-size:30px;
+}
+
+.logo p{
+    font-size:13px;
+    opacity:.9;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:25px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* Hero */
+
+.hero{
+    background:white;
+    padding:60px 20px;
+    text-align:center;
+}
+
+.hero h2{
+    font-size:40px;
+    color:#1565C0;
+}
+
+.hero p{
+    width:700px;
+    max-width:90%;
+    margin:auto;
+    margin-top:15px;
+    color:#555;
+    line-height:1.6;
+}
+
+/* Cards */
+
+.container{
+    width:90%;
+    max-width:1300px;
+    margin:auto;
+    padding:50px 0;
+}
+
+.container h2{
+    margin-bottom:25px;
+    color:#333;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card img{
+    width:100%;
+    height:240px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card-content h3{
+    margin-bottom:12px;
+}
+
+.info{
+    color:#555;
+    margin:7px 0;
+}
+
+button{
+    margin-top:18px;
+    width:100%;
+    padding:12px;
+    border:none;
+    background:#1565C0;
+    color:white;
+    font-size:16px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0d47a1;
+}
+
+/* Footer */
+
+footer{
+    background:white;
+    padding:30px;
+    text-align:center;
+    color:#666;
+    margin-top:50px;
+}
+
+</style>
+
+</head>
+<body>
+
+<nav>
+
+<div class="logo">
+<h1>Cure Kshetra</h1>
+<p>Powered by shaktiind Technologies</p>
+</div>
+
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="apply.html">Apply</a></li>
+<li><a href="profile.html">Profile</a></li>
+</ul>
+
+</nav>
+
+<section class="hero">
+
+<h2>Verified Child Medical Cases</h2>
+
+<p>
+
+Cure Kshetra is a transparent platform that displays verified child medical cases. Every application is reviewed before appearing on the website. Donations are made directly to the child's family.
+
+</p>
+</section>
+
+<div class="container">
+
+    <h2>Children Requiring Medical Support</h2>
+
+    <div class="cards" id="campaignContainer">
+
+    </div>
+
+</div>
+
+<footer>
+
+© 2026 Cure Kshetra | Powered by Shakti India
+
+</footer>
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+
+<script>
+
+loadCampaigns();
+async function loadCampaigns(){
+
+    const container =
+        document.getElementById("campaignContainer");
+
+    container.innerHTML = "Loading campaigns...";
+
+    const { data: applications, error } =
+        await supabaseClient
+        .from("applications")
+        .select("*")
+        .eq("status","live");
+
+    if(error){
+
+        alert(error.message);
+        return;
+
+    }
+
+    if(applications.length===0){
+
+        container.innerHTML=
+        "<h3>No live campaigns available.</h3>";
+
+        return;
+
+    }
+
+    container.innerHTML="";
+
+    for(const app of applications){
+
+    container.innerHTML += `
+
+    <div class="card">
+
+        <div class="card-content">
+
+            <h3>${app.applicant_name}</h3>
+
+            <div class="info">
+
+                ₹${Number(app.required_amount).toLocaleString("en-IN")}
+
+            </div>
+
+            <div class="info">
+
+                Status : ${app.status}
+
+            </div>
+
+        </div>
+
+    </div>
+
+    `;
+
+}
+
+}
+
+</script>
+</body>
+</html>
