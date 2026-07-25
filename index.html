@@ -291,11 +291,11 @@ console.log("Error:", error);
                 Amount : ₹${Number(app.required_amount || 0).toLocaleString("en-IN")}
             </div>
 
-            <button>
+           <button onclick="viewCampaign('${app.id}')">
 
-                View Details
+    View Details
 
-            </button>
+</button>
 
         </div>
 
@@ -306,7 +306,12 @@ console.log("Error:", error);
 }
 
 }
+function viewCampaign(applicationId){
 
+    window.location.href =
+    `campaign.html?id=${applicationId}`;
+
+}
 </script>
 </body>
 </html>
