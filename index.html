@@ -209,10 +209,13 @@ async function loadCampaigns(){
     container.innerHTML = "Loading campaigns...";
 
     const { data: applications, error } =
-        await supabaseClient
-        .from("applications")
-        .select("*")
-        .eq("status","live");
+    await supabaseClient
+    .from("applications")
+    .select("*")
+    .eq("status","live");
+
+console.log("Applications:", applications);
+console.log("Error:", error);
 
     if(error){
 
