@@ -241,11 +241,14 @@ console.log("Error:", error);
     // Patient
     // -----------------------------
 
-    const { data: patient } = await supabaseClient
-        .from("application_patients")
-        .select("patient_name")
-        .eq("application_id", app.id)
-        .single();
+    const { data: patient, error: patientError } = await supabaseClient
+    .from("application_patients")
+    .select("*")
+    .eq("application_id", app.id);
+
+console.log(app.id);
+console.log(patient);
+console.log(patientError);
 
     // -----------------------------
     // Medical
