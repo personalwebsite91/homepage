@@ -88,26 +88,64 @@ nav a{
 
 .cards{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:25px;
+    grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+    gap:30px;
 }
 
 .card{
+
     background:white;
-    border-radius:12px;
+
+    border-radius:20px;
+
     overflow:hidden;
-    box-shadow:0 4px 12px rgba(0,0,0,.08);
+
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+
     transition:.3s;
+
+    border:1px solid #E8EEF7;
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 18px 45px rgba(21,101,192,.18);
+
 }
 
 .card:hover{
     transform:translateY(-5px);
 }
 
-.card img{
+.card-image{
+
+    height:250px;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.card-image img{
+
     width:100%;
-    height:240px;
+
+    height:100%;
+
     object-fit:cover;
+
+    transition:.4s;
+
+}
+
+.card:hover img{
+
+    transform:scale(1.08);
+
 }
 
 .card-content{
@@ -128,8 +166,8 @@ button{
     width:100%;
     padding:12px;
     border:none;
-    background:#1565C0;
-    color:white;
+    background:#0000ff;
+    color:rgb(255, 255, 255);
     font-size:16px;
     border-radius:8px;
     cursor:pointer;
@@ -149,6 +187,48 @@ footer{
     margin-top:50px;
 }
 
+.verified-badge{
+
+    position:absolute;
+
+    top:15px;
+
+    left:15px;
+
+    background:#2E7D32;
+
+    color:white;
+
+    padding:10px 16px;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.25);
+
+}
+.amount-box{
+
+    margin-top:18px;
+
+    background:#E8F4FF;
+
+    color:#1565C0;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    text-align:center;
+
+}
 </style>
 
 </head>
@@ -257,51 +337,66 @@ console.log("Error:", error);
     .eq("application_id", app.id)
     .maybeSingle();
 
+    const { data: documents } = await supabaseClient
+    .from("medical_documents")
+    .select("patient_photo")
+    .eq("application_id", app.id)
+    .maybeSingle();
+
+    let patientImage = "images/default-patient.png";
+
+if (documents?.patient_photo) {
+
+    const { data } = await supabaseClient.storage
+        .from("medical-documents")
+        .createSignedUrl(documents.patient_photo, 300);
+
+    if (data) {
+        patientImage = data.signedUrl;
+    }
+
+}
     container.innerHTML += `
+<div class="card">
 
-    <div class="card">
+    <div class="card-image">
 
-        <div class="card-content">
+        <img src="${patientImage}" alt="${patient?.patient_name || "Patient"}">
 
-            <div style="
-                display:inline-block;
-                background:#2E7D32;
-                color:white;
-                padding:5px 12px;
-                border-radius:20px;
-                font-size:13px;
-                margin-bottom:10px;
-            ">
-
-                ✔ Verified
-
-            </div>
-
-            <h3>${patient?.patient_name || "-"}</h3>
-
-            <div class="info">
-                Disease : ${medical?.disease_name || "-"}
-            </div>
-
-            <div class="info">
-                Hospital : ${medical?.hospital_name || "-"}
-            </div>
-
-            <div class="info">
-                Amount : ₹${Number(app.required_amount || 0).toLocaleString("en-IN")}
-            </div>
-
-           <button onclick="viewCampaign('${app.id}')">
-
-    View Details
-
-</button>
-
+        <div class="verified-badge">
+            ✔ Verified
         </div>
 
     </div>
 
-    `;
+    <div class="card-content">
+
+        <h3>${patient?.patient_name || "-"}</h3>
+
+        <div class="info">
+            Disease : ${medical?.disease_name || "-"}
+        </div>
+
+        <div class="info">
+            Hospital : ${medical?.hospital_name || "-"}
+        </div>
+
+        <div class="info">
+           <div class="amount-box">
+            Amount : ₹${Number(app.required_amount || 0).toLocaleString("en-IN")}
+
+</div>
+        </div>
+
+        <button onclick="viewCampaign('${app.id}')">
+            View Details
+        </button>
+
+    </div>
+
+</div>
+`;
+    
 
 }
 
