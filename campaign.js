@@ -26,7 +26,17 @@ const applicationId = params.get("id");
 const loading = document.getElementById("loading");
 const errorContainer = document.getElementById("errorContainer");
 const campaignContainer = document.getElementById("campaignContainer");
+const documentModal =
+document.getElementById("documentModal");
 
+const documentFrame =
+document.getElementById("documentFrame");
+
+const documentTitle =
+document.getElementById("documentTitle");
+
+const closeDocument =
+document.getElementById("closeDocument");
 // Hero
 
 const patientPhoto = document.getElementById("patientPhoto");
@@ -210,9 +220,23 @@ async function loadCampaign(){
     }
 
 }
-function renderCampaign(application, patient, medical, documents) {
+async function renderCampaign(application, patient, medical, documents) {
+    
+    if (documents?.patient_photo) {
 
-    patientPhoto.src = documents?.patient_photo || "";
+    const { data, error } = await supabaseClient.storage
+    .from("medical-documents")
+    .createSignedUrl(documents.patient_photo, 300);
+
+if (error) {
+    console.error(error);
+} else {
+    patientPhoto.src = data.signedUrl;
+}
+
+    // patientPhoto.src = data.publicUrl;
+
+}
     patientName.textContent = patient?.patient_name || "-";
     patientType.textContent = patient?.patient_type || "-";
     patientAge.textContent = patient?.age || "-";
@@ -260,40 +284,92 @@ function renderCampaign(application, patient, medical, documents) {
 
     loading.style.display = "none";
     campaignContainer.style.display = "block";
+    console.log("Documents:", documents);
+console.log("Patient Photo:", documents?.patient_photo);
+console.log("Disease Document:", documents?.disease_document);
 
 }
-function renderDocuments(documents) {
+async function renderDocuments(documents) {
 
     documentsContainer.innerHTML = "";
 
-    const docs = [
-
+    const documentList = [
         {
             title: "Hospital Certificate",
-            url: documents?.disease_document
+            path: documents.disease_document
         },
-
         {
             title: "Doctor Prescription",
-            url: documents?.doctor_prescription
+            path: documents.doctor_prescription
         }
-
     ];
 
-    docs.forEach(doc => {
+    for (const doc of documentList) {
 
-        if (!doc.url) return;
+        if (!doc.path) continue;
+
+        const { data, error } = await supabaseClient.storage
+            .from("medical-documents")
+            .createSignedUrl(doc.path, 300);
+
+        if (error) continue;
 
         documentsContainer.innerHTML += `
+            <div
+class="doc"
+onclick="openDocument('${doc.title}','${data.signedUrl}')">
 
-        <div class="doc">
-            <a href="${doc.url}" target="_blank">
-                📄 ${doc.title}
-            </a>
-        </div>
+📄 ${doc.title}
 
+</div>
         `;
+    }
+    }
+    function openDocument(title,url){
 
-    });
+    documentTitle.textContent = title;
+
+    documentFrame.src = url;
+
+    documentModal.style.display = "block";
 
 }
+
+closeDocument.onclick = function(){
+
+    documentFrame.src = "";
+
+    documentModal.style.display = "none";
+
+}
+// ============================================
+
+document.addEventListener("contextmenu", e => e.preventDefault());
+
+document.addEventListener("dragstart", e => e.preventDefault());
+
+document.addEventListener("selectstart", e => e.preventDefault());
+document.addEventListener("keydown", function(e){
+
+    // F12
+    if(e.key === "F12"){
+        e.preventDefault();
+    }
+
+    // Ctrl+Shift+I / J / C
+    if(e.ctrlKey && e.shiftKey &&
+       ["I","J","C"].includes(e.key.toUpperCase())){
+        e.preventDefault();
+    }
+
+    // Ctrl+U (View Source)
+    if(e.ctrlKey && e.key.toUpperCase() === "U"){
+        e.preventDefault();
+    }
+
+    // Ctrl+S (Save Page)
+    if(e.ctrlKey && e.key.toUpperCase() === "S"){
+        e.preventDefault();
+    }
+
+});
