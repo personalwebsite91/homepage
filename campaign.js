@@ -144,7 +144,7 @@ async function loadCampaign(){
 
         .eq("status","live")
 
-        .single();
+        .maybeSingle();
 
         if(applicationError) throw applicationError;
 
