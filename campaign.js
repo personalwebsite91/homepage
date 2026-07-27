@@ -18,11 +18,23 @@ const supabaseClient = supabase.createClient(
 
 const params = new URLSearchParams(window.location.search);
 const applicationId = params.get("id");
-
+let campaignData = {};
+let selectedDonationAmount = 0;
+let donationIntentId = null;
 // ============================================
 // Elements
 // ============================================
+// ============================================
+// Donation Elements
+// ============================================
 
+const donationModal = document.getElementById("donationModal");
+
+const donateTopBtn = document.getElementById("donateTopBtn");
+
+const donateBottomBtn = document.getElementById("donateBottomBtn");
+
+const closeDonation = document.getElementById("closeDonation");
 const loading = document.getElementById("loading");
 const errorContainer = document.getElementById("errorContainer");
 const campaignContainer = document.getElementById("campaignContainer");
@@ -71,10 +83,7 @@ const maskedAadhaar = document.getElementById("maskedAadhaar");
 
 // Bank
 
-const accountHolder = document.getElementById("accountHolder");
-const bankName = document.getElementById("bankName");
-const maskedAccount = document.getElementById("maskedAccount");
-const ifscCode = document.getElementById("ifscCode");
+
 
 // Documents
 
@@ -84,7 +93,15 @@ document.getElementById("documentsContainer");
 // ============================================
 // Masking Functions
 // ============================================
+// ============================================
+// Donation Events
+// ============================================
 
+donateTopBtn.addEventListener("click", openDonation);
+
+donateBottomBtn.addEventListener("click", openDonation);
+
+closeDonation.addEventListener("click", closeDonationModal);
 function maskPhone(phone){
 
     if(!phone) return "-";
@@ -222,7 +239,12 @@ async function loadCampaign(){
 }
 
 async function renderCampaign(application, patient, medical, documents) {
-    
+    campaignData = {
+    application,
+    patient,
+    medical,
+    documents
+};
     if (documents?.patient_photo) {
 
     const { data, error } = await supabaseClient.storage
@@ -269,17 +291,17 @@ if (error) {
     maskedAadhaar.textContent =
         maskAadhaar(application?.applicant_aadhaar);
 
-    accountHolder.textContent =
-        application?.account_holder_name || "-";
+    // accountHolder.textContent =
+    //     application?.account_holder_name || "-";
 
-    bankName.textContent =
-        application?.bank_name || "-";
+    // bankName.textContent =
+    //     application?.bank_name || "-";
 
-    maskedAccount.textContent =
-        maskAccount(application?.account_number);
+    // maskedAccount.textContent =
+    //     maskAccount(application?.account_number);
 
-    ifscCode.textContent =
-        application?.ifsc_code || "-";
+    // ifscCode.textContent =
+    //     application?.ifsc_code || "-";
 
     renderDocuments(documents);
 
@@ -374,3 +396,337 @@ document.addEventListener("keydown", function(e){
     }
 
 });
+function openDonation() {
+
+    donationModal.style.display = "block";
+
+    renderConsentStep();
+
+}
+
+function closeDonationModal() {
+
+    donationModal.style.display = "none";
+
+}
+function showStep(step){
+
+    document.getElementById("step1").style.display = "none";
+    document.getElementById("step2").style.display = "none";
+    document.getElementById("step3").style.display = "none";
+
+    document.getElementById("step" + step).style.display = "block";
+
+}
+function renderConsentStep() {
+
+    showStep(1);
+
+    const step1 = document.getElementById("step1");
+
+    step1.innerHTML = `
+
+<div class="donation-step">
+
+    <h2>❤️ Review Before Donation</h2>
+
+    <p class="step-description">
+        This campaign has been independently verified by CureKshetra.
+        Please review the information below before continuing.
+    </p>
+
+    <div class="trust-box">
+
+        <div class="trust-item">
+            ✅ Hospital Verified
+        </div>
+
+        <div class="trust-item">
+            ✅ Patient Identity Verified
+        </div>
+
+        <div class="trust-item">
+            ✅ Medical Documents Verified
+        </div>
+
+        <div class="trust-item">
+            ✅ Direct Beneficiary Payment
+        </div>
+
+    </div>
+
+    <div class="consent-box">
+
+        <label class="check-item">
+            <input type="checkbox" class="donationCheck">
+            <span>I reviewed the campaign information.</span>
+        </label>
+
+        <label class="check-item">
+            <input type="checkbox" class="donationCheck">
+            <span>I reviewed the medical documents.</span>
+        </label>
+
+        <label class="check-item">
+            <input type="checkbox" class="donationCheck">
+            <span>I understand my donation goes directly to the beneficiary.</span>
+        </label>
+
+        <label class="check-item">
+            <input type="checkbox" class="donationCheck">
+            <span>CureKshetra never receives or stores donor funds.</span>
+        </label>
+
+    </div>
+
+    <button
+        id="continueDonation"
+        class="btn primary continue-btn"
+        disabled>
+
+        Continue →
+
+    </button>
+
+</div>
+
+`;
+
+    const checks = document.querySelectorAll(".donationCheck");
+
+    const btn = document.getElementById("continueDonation");
+
+    checks.forEach(check => {
+
+        check.addEventListener("change", () => {
+
+            btn.disabled = ![...checks].every(c => c.checked);
+
+        });
+
+    });
+
+btn.onclick = renderAmountStep;
+
+}
+function renderAmountStep(){
+
+    showStep(2);
+
+    const step2 = document.getElementById("step2");
+
+    step2.innerHTML = `
+
+<h2>❤️ Select Donation Amount</h2>
+
+<p class="step-description">
+
+Every contribution helps the patient receive treatment.
+
+</p>
+
+<div class="amount-grid">
+
+<div class="amount-card" data-amount="100">₹100</div>
+
+<div class="amount-card" data-amount="250">₹250</div>
+
+<div class="amount-card" data-amount="500">₹500</div>
+
+<div class="amount-card" data-amount="1000">₹1000</div>
+
+<div class="amount-card" data-amount="5000">₹5000</div>
+
+<div class="amount-card" id="customCard">
+
+Custom
+
+</div>
+
+</div>
+
+<div class="custom-amount">
+
+<input
+id="customAmount"
+type="number"
+placeholder="Enter amount">
+
+</div>
+
+<div class="step-buttons">
+
+<button
+class="btn secondary"
+id="backStep1">
+
+← Back
+
+</button>
+
+<button
+class="btn primary"
+id="continuePayment"
+disabled>
+
+Continue →
+
+</button>
+
+</div>
+
+`;
+
+    const cards =
+    document.querySelectorAll(".amount-card");
+
+    const input =
+    document.getElementById("customAmount");
+
+    const next =
+    document.getElementById("continuePayment");
+
+    cards.forEach(card=>{
+
+        card.onclick=()=>{
+
+            cards.forEach(c=>c.classList.remove("selected"));
+
+            card.classList.add("selected");
+
+            input.value="";
+
+            selectedDonationAmount =
+            Number(card.dataset.amount||0);
+
+            next.disabled=
+            selectedDonationAmount<=0;
+
+        };
+
+    });
+
+    input.oninput=()=>{
+
+        cards.forEach(c=>c.classList.remove("selected"));
+
+        selectedDonationAmount =
+        Number(input.value);
+
+        next.disabled=
+        selectedDonationAmount<=0;
+
+    };
+
+    document.getElementById("backStep1").onclick =
+        renderConsentStep;
+
+    next.onclick = async ()=>{
+
+    next.disabled = true;
+
+    next.textContent = "Preparing Payment...";
+
+    const success = await saveDonationIntent();
+
+    if(!success){
+
+        next.disabled = false;
+
+        next.textContent = "Continue →";
+
+        return;
+
+    }
+
+    renderPaymentStep();
+
+};
+
+}
+async function saveDonationIntent(){
+
+    const { data, error } = await supabaseClient
+        .from("donation_intents")
+        .insert({
+
+            application_id: applicationId,
+
+            amount: selectedDonationAmount,
+
+            status: "initiated"
+
+        })
+        .select()
+        .single();
+
+    if (error) {
+
+    console.error(error);
+
+    alert(error.message);
+
+    return false;
+
+}
+
+    donationIntentId = data.id;
+
+    return true;
+
+}
+function renderPaymentStep(){
+
+    showStep(3);
+
+    const step3 = document.getElementById("step3");
+
+    step3.innerHTML = `
+
+        <div class="donation-step">
+
+            <h2>❤️ Payment Ready</h2>
+
+            <p class="step-description">
+
+                Your donation has been prepared.
+
+            </p>
+
+            <div class="trust-box">
+
+                <div class="trust-item">
+
+                    Donation ID
+
+                    <br><br>
+
+                    ${donationIntentId}
+
+                </div>
+
+                <div class="trust-item">
+
+                    Amount
+
+                    <br><br>
+
+                    ₹${selectedDonationAmount.toLocaleString("en-IN")}
+
+                </div>
+
+            </div>
+
+            <button
+                class="btn secondary"
+                onclick="renderAmountStep()">
+
+                ← Back
+
+            </button>
+
+        </div>
+
+    `;
+
+}

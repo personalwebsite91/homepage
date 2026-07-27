@@ -402,6 +402,440 @@ border:none;
     z-index:10;
 
 }
+.donate-btn{
+
+background:#2E7D32;
+
+color:white;
+
+font-size:20px;
+
+padding:18px 35px;
+
+border-radius:12px;
+
+width:100%;
+
+margin-top:20px;
+
+transition:.25s;
+
+}
+
+.donate-btn:hover{
+
+background:#1B5E20;
+
+transform:translateY(-2px);
+
+}
+
+.donation-note{
+
+text-align:center;
+
+margin-top:15px;
+
+color:#666;
+
+font-size:15px;
+
+}
+
+.donate-section{
+
+text-align:center;
+
+}
+
+.trust-points{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+gap:15px;
+
+margin:30px 0;
+
+}
+
+.trust-points div{
+
+background:#F4F8FC;
+
+padding:16px;
+
+border-radius:10px;
+
+font-weight:bold;
+
+}
+
+/* ===================================
+Donation Modal
+=================================== */
+
+.donation-modal{
+
+display:none;
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,.55);
+
+z-index:99999;
+
+overflow-y:auto;
+
+padding:40px 20px;
+
+}
+
+.donation-container{
+
+max-width:720px;
+
+margin:auto;
+
+background:white;
+
+border-radius:20px;
+
+overflow:hidden;
+
+animation:popup .25s ease;
+
+}
+
+@keyframes popup{
+
+from{
+
+transform:translateY(20px);
+
+opacity:0;
+
+}
+
+to{
+
+transform:translateY(0);
+
+opacity:1;
+
+}
+
+}
+
+.donation-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:25px 30px;
+
+background:#1565C0;
+
+color:white;
+
+}
+
+.donation-header h2{
+
+margin-bottom:6px;
+
+}
+
+.donation-header p{
+
+opacity:.9;
+
+font-size:14px;
+
+}
+
+#closeDonation{
+
+background:none;
+
+border:none;
+
+font-size:30px;
+
+color:white;
+
+cursor:pointer;
+
+}
+
+
+.check-item{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+    margin:18px 0;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+}
+
+.check-item input{
+
+    margin-top:4px;
+
+}
+.donation-progress{
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+padding:25px 30px;
+
+background:#F7FAFD;
+
+}
+
+.step{
+
+width:40px;
+height:40px;
+
+border-radius:50%;
+
+background:#D5DCE3;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-weight:bold;
+
+color:white;
+
+}
+
+.step.active{
+
+background:#1565C0;
+
+}
+
+.line{
+
+width:70px;
+
+height:3px;
+
+background:#D5DCE3;
+
+}
+
+.donation-body{
+
+padding:35px;
+
+min-height:420px;
+
+}
+.donation-step{
+
+display:flex;
+
+flex-direction:column;
+
+gap:22px;
+
+}
+
+.step-description{
+
+color:#666;
+
+line-height:1.6;
+
+}
+
+.trust-box{
+
+background:#F4FAF6;
+
+border:1px solid #D8EEDF;
+
+border-radius:12px;
+
+padding:18px;
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:15px;
+
+}
+
+.trust-item{
+
+font-weight:600;
+
+color:#1B5E20;
+
+}
+
+.consent-box{
+
+display:flex;
+
+flex-direction:column;
+
+gap:18px;
+
+}
+
+.check-item{
+
+display:flex;
+
+align-items:flex-start;
+
+gap:12px;
+
+cursor:pointer;
+
+line-height:1.5;
+
+}
+
+.check-item input{
+
+margin-top:4px;
+
+transform:scale(1.2);
+
+}
+
+.continue-btn{
+
+margin-top:10px;
+
+width:100%;
+
+padding:16px;
+
+font-size:18px;
+
+}
+.amount-grid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:15px;
+
+margin:25px 0;
+
+}
+
+.amount-card{
+
+padding:18px;
+
+border:2px solid #E5E7EB;
+
+border-radius:12px;
+
+text-align:center;
+
+font-size:20px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:.25s;
+
+background:white;
+
+}
+
+.amount-card:hover{
+
+border-color:#1565C0;
+
+background:#F4F9FF;
+
+}
+
+.amount-card.selected{
+
+background:#1565C0;
+
+color:white;
+
+border-color:#1565C0;
+
+}
+
+.custom-amount{
+
+margin-top:20px;
+
+}
+
+.custom-amount input{
+
+width:100%;
+
+padding:16px;
+
+font-size:20px;
+
+border:2px solid #DDD;
+
+border-radius:10px;
+
+outline:none;
+
+}
+
+.step-buttons{
+
+display:flex;
+
+justify-content:space-between;
+
+gap:15px;
+
+margin-top:35px;
+
+}
+
+.step-buttons button{
+
+flex:1;
+
+}
 </style>
 
 </head>
@@ -415,7 +849,7 @@ Navbar
 <nav>
 
     <div class="logo">
-        <h1>Cure Kshetra</h1>
+        <h1>CureKshetra</h1>
         <p>Powered by Shaktiind Technologies</p>
     </div>
 
@@ -455,7 +889,7 @@ Navbar
 
             <div class="badge" id="verifiedBadge">
 
-                ✔ VERIFIED BY CURE KSHETRA
+                ✔ VERIFIED BY CureKshetra
 
             </div>
 
@@ -517,13 +951,27 @@ Navbar
 
                 </div>
 
-            </div>
-
             <div class="amount">
 
-                ₹ <span id="requiredAmount"></span>
+    ₹ <span id="requiredAmount"></span>
 
-            </div>
+</div>
+
+<div class="buttons">
+
+    <button id="donateTopBtn" class="btn donate-btn">
+
+        ❤️ Donate Now
+
+    </button>
+
+</div>
+
+<p class="donation-note">
+
+    100% of your donation goes directly to the verified beneficiary.
+
+</p>
 
         </div>
 
@@ -654,60 +1102,113 @@ Navbar
         </div>
 
     </div>
+<div class="section donate-section">
 
+    <h2>❤️ Help Save a Life</h2>
+
+    <p>
+
+        Every contribution helps this patient receive treatment.
+
+        CureKshetra verifies the campaign, but your donation goes
+
+        directly to the beneficiary's bank account.
+
+    </p>
+
+    <div class="trust-points">
+
+        <div>✔ Hospital Verified</div>
+
+        <div>✔ Identity Verified</div>
+
+        <div>✔ Medical Documents Verified</div>
+
+        <div>✔ No Platform Commission</div>
+
+    </div>
+
+    <button id="donateBottomBtn" class="btn donate-btn">
+
+        Donate Now
+
+    </button>
+
+</div>
     <!-- Bank -->
 
-    <div class="section">
+   
+</div>
 
-        <h3>Bank Details</h3>
 
-        <div class="grid">
+<!-- =======================
+Document Viewer
+======================= -->
+<!-- Donation Modal -->
 
-            <div class="item">
+<div id="donationModal" class="donation-modal">
 
-                <div class="label">
+    <div class="donation-container">
 
-                    Account Holder
+        <div class="donation-header">
 
-                </div>
+            <div>
 
-                <div class="value" id="accountHolder"></div>
+                <h2>Donate Securely</h2>
 
-            </div>
-
-            <div class="item">
-
-                <div class="label">
-
-                    Bank
-
-                </div>
-
-                <div class="value" id="bankName"></div>
+                <p>
+                    100% of your donation goes directly to the beneficiary.
+                </p>
 
             </div>
 
-            <div class="item">
+            <button id="closeDonation">
+                ✕
+            </button>
 
-                <div class="label">
+        </div>
 
-                    Account Number
+        <!-- Progress -->
 
-                </div>
+        <div class="donation-progress">
 
-                <div class="value" id="maskedAccount"></div>
+            <div class="step active" id="stepIndicator1">
+                1
+            </div>
+
+            <div class="line"></div>
+
+            <div class="step" id="stepIndicator2">
+                2
+            </div>
+
+            <div class="line"></div>
+
+            <div class="step" id="stepIndicator3">
+                3
+            </div>
+
+        </div>
+
+        <!-- BODY -->
+
+        <div class="donation-body">
+
+            <!-- STEP 1 -->
+
+            <div id="step1">
 
             </div>
 
-            <div class="item">
+            <!-- STEP 2 -->
 
-                <div class="label">
+            <div id="step2" style="display:none">
 
-                    IFSC
+            </div>
 
-                </div>
+            <!-- STEP 3 -->
 
-                <div class="value" id="ifscCode"></div>
+            <div id="step3" style="display:none">
 
             </div>
 
@@ -716,12 +1217,6 @@ Navbar
     </div>
 
 </div>
-
-
-<!-- =======================
-Document Viewer
-======================= -->
-
 <div id="documentModal" class="document-modal">
 
     <div class="document-header">
@@ -736,11 +1231,11 @@ Document Viewer
 
         <!-- Watermark -->
         <div class="watermark">
-            Cure Kshetra<br>
+            CureKshetra<br>
             Verified Medical Document
         </div>
 <div class="watermark">
-            Cure Kshetra<br>
+            CureKshetra<br>
             Verified Medical Document
         </div>
         <iframe id="documentFrame"></iframe>
