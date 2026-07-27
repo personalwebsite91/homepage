@@ -227,7 +227,7 @@ async function renderCampaign(application, patient, medical, documents) {
 
     const { data, error } = await supabaseClient.storage
     .from("medical-documents")
-    .createSignedUrl(documents.patient_photo, 300);
+    .createSignedUrl(documents.patient_photo, 3600);
 
 if (error) {
     console.error(error);
