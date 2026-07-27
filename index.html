@@ -342,15 +342,17 @@ console.log("Error:", error);
     .select("patient_photo")
     .eq("application_id", app.id)
     .maybeSingle();
-
-    let patientImage = "images/default-patient.png";
+let patientImage = "";
 
 if (documents?.patient_photo) {
 
-    const { data } = await supabaseClient.storage
-        .from("medical-documents")
-        .createSignedUrl(documents.patient_photo, 300);
+    const { data, error } = await supabaseClient.storage
+    .from("medical-documents")
+    .createSignedUrl(documents.patient_photo, 300);
 
+console.log("Path:", documents.patient_photo);
+console.log("Signed URL:", data);
+console.log("Error:", error);
     if (data) {
         patientImage = data.signedUrl;
     }
@@ -361,7 +363,9 @@ if (documents?.patient_photo) {
 
     <div class="card-image">
 
-        <img src="${patientImage}" alt="${patient?.patient_name || "Patient"}">
+       <img
+src="${patientImage || 'https://placehold.co/600x400?text=Patient'}"
+alt="${patient?.patient_name}">
 
         <div class="verified-badge">
             ✔ Verified
