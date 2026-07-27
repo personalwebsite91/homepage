@@ -162,7 +162,7 @@ async function loadCampaign(){
 
         .eq("application_id",applicationId)
 
-        .single();
+        .maybeSingle();
 
         // ===========================
         // Medical
@@ -178,7 +178,7 @@ async function loadCampaign(){
 
         .eq("application_id",applicationId)
 
-        .single();
+        .maybeSingle();
 
         // ===========================
         // Documents
@@ -194,7 +194,7 @@ async function loadCampaign(){
 
         .eq("application_id",applicationId)
 
-        .single();
+        .maybeSingle();
 
         // ===========================
         // Render
@@ -220,9 +220,7 @@ async function loadCampaign(){
     }
 
 }
-if (!patient) console.log("No patient row");
-if (!medical) console.log("No medical row");
-if (!documents) console.log("No documents row");
+
 async function renderCampaign(application, patient, medical, documents) {
     
     if (documents?.patient_photo) {
