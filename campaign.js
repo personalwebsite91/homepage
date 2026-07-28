@@ -924,25 +924,28 @@ if(step >= 3){
 
 }
 async function launchUPI(upiLink, method){
-if (!campaignData.application.upi_id) {
 
-    alert("This campaign does not have a UPI ID configured.");
-
-    return;
-
-}
-    await supabaseClient
+    const { error } = await supabaseClient
         .from("donation_intents")
         .update({
-
             payment_method: method,
-
             status: "payment_started"
-
         })
         .eq("id", donationIntentId);
 
-   showPaymentConfirmation(upiLink, method);
+    if(error){
+        console.error(error);
+        alert(error.message);
+        return;
+    }
+
+    // 👇 Debug
+    console.log("Generated UPI Link:");
+    console.log(upiLink);
+
+    alert(upiLink);
+
+    window.location.href = upiLink;
 
 }
 function showPaymentConfirmation(upiLink, method){
