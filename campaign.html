@@ -836,6 +836,190 @@ margin-top:35px;
 flex:1;
 
 }
+.step.completed{
+
+background:#2E7D32;
+
+color:white;
+
+}
+.line{
+
+    width:70px;
+    height:4px;
+
+    background:#D5DCE3;
+
+    transition:.3s;
+
+}
+
+.line.completed{
+
+    background:#2E7D32;
+
+}
+.payment-summary{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:18px;
+
+margin:20px 0;
+
+}
+
+.summary-card{
+
+background:#F7FAFC;
+
+border:1px solid #E5E7EB;
+
+padding:18px;
+
+border-radius:12px;
+
+}
+
+.summary-label{
+
+font-size:14px;
+
+color:#777;
+
+margin-bottom:8px;
+
+}
+
+.summary-value{
+
+font-size:22px;
+
+font-weight:bold;
+
+}
+
+.payment-title{
+
+margin:25px 0 15px;
+
+}
+
+.payment-methods{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:15px;
+
+}
+
+.payment-btn{
+
+padding:16px;
+
+border:2px solid #E5E7EB;
+
+border-radius:12px;
+
+background:white;
+
+cursor:pointer;
+
+font-size:16px;
+
+font-weight:bold;
+
+transition:.25s;
+
+}
+
+.payment-btn:hover{
+
+border-color:#1565C0;
+
+background:#F4F9FF;
+
+}
+
+.or-divider{
+
+text-align:center;
+
+margin:25px 0;
+
+font-weight:bold;
+
+color:#777;
+
+}
+
+.qr-btn{
+
+width:100%;
+
+padding:16px;
+
+font-size:18px;
+
+border:none;
+
+background:#1565C0;
+
+color:white;
+
+border-radius:12px;
+
+cursor:pointer;
+
+}
+
+.bank-transfer{
+
+margin-top:25px;
+
+background:#F8FAFC;
+
+padding:15px;
+
+border-radius:10px;
+
+}
+
+.bank-details{
+
+margin-top:15px;
+
+line-height:2;
+
+}
+
+.security-box{
+
+margin-top:30px;
+
+background:#E8F5E9;
+
+border:1px solid #C8E6C9;
+
+padding:20px;
+
+border-radius:12px;
+
+}
+
+.security-box ul{
+
+margin-top:12px;
+
+padding-left:20px;
+
+line-height:2;
+
+}
 </style>
 
 </head>
@@ -1172,21 +1356,15 @@ Document Viewer
 
         <div class="donation-progress">
 
-            <div class="step active" id="stepIndicator1">
-                1
-            </div>
+           <div class="step active" id="stepIndicator1">1</div>
 
-            <div class="line"></div>
+<div class="line" id="line1"></div>
 
-            <div class="step" id="stepIndicator2">
-                2
-            </div>
+<div class="step" id="stepIndicator2">2</div>
 
-            <div class="line"></div>
+<div class="line" id="line2"></div>
 
-            <div class="step" id="stepIndicator3">
-                3
-            </div>
+<div class="step" id="stepIndicator3">3</div>
 
         </div>
 

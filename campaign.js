@@ -411,11 +411,13 @@ function closeDonationModal() {
 }
 function showStep(step){
 
-    document.getElementById("step1").style.display = "none";
-    document.getElementById("step2").style.display = "none";
-    document.getElementById("step3").style.display = "none";
+    document.getElementById("step1").style.display="none";
+    document.getElementById("step2").style.display="none";
+    document.getElementById("step3").style.display="none";
 
-    document.getElementById("step" + step).style.display = "block";
+    document.getElementById("step"+step).style.display="block";
+
+    updateProgress(step);
 
 }
 function renderConsentStep() {
@@ -681,52 +683,256 @@ function renderPaymentStep(){
 
     const step3 = document.getElementById("step3");
 
+    const application = campaignData.application;
+    const patient = campaignData.patient;
+    const upiLink =
+`upi://pay?pa=${encodeURIComponent(application.upi_id)}
+&pn=${encodeURIComponent(application.account_holder_name)}
+&am=${selectedDonationAmount}
+&cu=INR`;
+    const medical = campaignData.medical;
+
     step3.innerHTML = `
 
-        <div class="donation-step">
+<div class="donation-step">
 
-            <h2>❤️ Payment Ready</h2>
+    <h2>❤️ Complete Your Donation</h2>
 
-            <p class="step-description">
+    <p class="step-description">
 
-                Your donation has been prepared.
+        Every contribution directly supports the verified beneficiary.
 
-            </p>
+    </p>
 
-            <div class="trust-box">
+    <div class="payment-summary">
 
-                <div class="trust-item">
+        <div class="summary-card">
 
-                    Donation ID
+            <div class="summary-label">
 
-                    <br><br>
-
-                    ${donationIntentId}
-
-                </div>
-
-                <div class="trust-item">
-
-                    Amount
-
-                    <br><br>
-
-                    ₹${selectedDonationAmount.toLocaleString("en-IN")}
-
-                </div>
+                Donation Amount
 
             </div>
 
-            <button
-                class="btn secondary"
-                onclick="renderAmountStep()">
+            <div class="summary-value amount">
 
-                ← Back
+                ₹${selectedDonationAmount.toLocaleString("en-IN")}
 
-            </button>
+            </div>
 
         </div>
 
-    `;
+        <div class="summary-card">
+
+            <div class="summary-label">
+
+                Beneficiary
+
+            </div>
+
+            <div class="summary-value">
+
+                ${patient.patient_name}
+
+            </div>
+
+            <small>
+
+                ${medical.hospital_name}
+
+            </small>
+
+        </div>
+
+    </div>
+
+    <h3 class="payment-title">
+
+        Choose Payment Method
+
+    </h3>
+
+    <div class="payment-methods">
+<button id="gpayBtn" class="payment-btn gpay">
+
+🟢 Google Pay
+
+</button>
+
+<button id="phonepeBtn" class="payment-btn phonepe">
+
+🟣 PhonePe
+
+</button>
+
+<button id="paytmBtn" class="payment-btn paytm">
+
+🔵 Paytm
+
+</button>
+
+<button id="bhimBtn" class="payment-btn bhim">
+
+⚪ BHIM UPI
+
+</button>
+
+    </div>
+
+    <div class="or-divider">
+
+        OR
+
+    </div>
+
+    <button class="qr-btn">
+
+        📱 Scan QR Code
+
+    </button>
+
+    <details class="bank-transfer">
+
+        <summary>
+
+            Need Bank Transfer?
+
+        </summary>
+
+        <div class="bank-details">
+
+            <p><strong>Account Holder:</strong> ${application.account_holder_name}</p>
+
+            <p><strong>Bank:</strong> ${application.bank_name}</p>
+
+            <p><strong>Account No:</strong> ${application.account_number}</p>
+
+            <p><strong>IFSC:</strong> ${application.ifsc_code}</p>
+
+        </div>
+
+    </details>
+
+    <div class="security-box">
+
+        <h4>
+
+            🛡 Secure Donation
+
+        </h4>
+
+        <ul>
+
+            <li>✔ Campaign Verified</li>
+
+            <li>✔ Hospital Verified</li>
+
+            <li>✔ Direct-to-Beneficiary Payment</li>
+
+            <li>✔ CureKshetra never stores your money</li>
+
+            <li>✔ Donation tracked securely</li>
+
+        </ul>
+
+    </div>
+
+    <div class="step-buttons">
+
+        <button
+            class="btn secondary"
+            onclick="renderAmountStep()">
+
+            ← Back
+
+        </button>
+
+    </div>
+
+</div>
+
+`;
+document.getElementById("gpayBtn").onclick =
+() => launchUPI(upiLink,"gpay");
+
+document.getElementById("phonepeBtn").onclick =
+() => launchUPI(upiLink,"phonepe");
+
+document.getElementById("paytmBtn").onclick =
+() => launchUPI(upiLink,"paytm");
+
+document.getElementById("bhimBtn").onclick =
+() => launchUPI(upiLink,"bhim");
+
+}
+function updateProgress(step){
+
+    const indicators = [
+        document.getElementById("stepIndicator1"),
+        document.getElementById("stepIndicator2"),
+        document.getElementById("stepIndicator3")
+    ];
+
+    indicators.forEach((item,index)=>{
+
+        item.classList.remove("active");
+        item.classList.remove("completed");
+
+        if(index+1 < step){
+
+            item.classList.add("completed");
+
+            item.innerHTML="✓";
+
+        }
+
+        else if(index+1===step){
+
+            item.classList.add("active");
+
+            item.innerHTML=index+1;
+
+        }
+
+        else{
+
+            item.innerHTML=index+1;
+
+        }
+
+    });
+    const line1 = document.getElementById("line1");
+const line2 = document.getElementById("line2");
+
+line1.classList.remove("completed");
+line2.classList.remove("completed");
+
+if(step >= 2){
+
+    line1.classList.add("completed");
+
+}
+
+if(step >= 3){
+
+    line2.classList.add("completed");
+
+}
+
+}
+async function launchUPI(upiLink, method){
+
+    await supabaseClient
+        .from("donation_intents")
+        .update({
+
+            payment_method: method,
+
+            status: "payment_started"
+
+        })
+        .eq("id", donationIntentId);
+
+    window.location.href = upiLink;
 
 }
