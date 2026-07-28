@@ -747,50 +747,38 @@ function renderPaymentStep(){
 
     </div>
 
-    <h3 class="payment-title">
 
-        Choose Payment Method
+<div class="payment-center">
 
+    <h3 class="qr-title">
+        📱 Scan QR Code to Donate
     </h3>
 
-    <div class="payment-methods">
-<button id="gpayBtn" class="payment-btn gpay">
+    <p class="qr-subtitle">
+        Open any UPI app and scan this QR code.
+    </p>
 
-🟢 Google Pay
+    <div id="upiQRCode" class="upi-qr"></div>
 
-</button>
+    <div class="upi-id-box">
 
-<button id="phonepeBtn" class="payment-btn phonepe">
+        <div class="upi-label">
+            UPI ID
+        </div>
 
-🟣 PhonePe
+        <div id="upiIdText" class="upi-value">
+            ${application.upi_id}
+        </div>
 
-</button>
+        <button id="copyUpiBtn" class="copy-btn">
 
-<button id="paytmBtn" class="payment-btn paytm">
+            📋 Copy UPI ID
 
-🔵 Paytm
-
-</button>
-
-<button id="bhimBtn" class="payment-btn bhim">
-
-⚪ BHIM UPI
-
-</button>
+        </button>
 
     </div>
 
-    <div class="or-divider">
-
-        OR
-
-    </div>
-
-    <button class="qr-btn">
-
-        📱 Scan QR Code
-
-    </button>
+</div>
 
     <details class="bank-transfer">
 
@@ -853,6 +841,23 @@ function renderPaymentStep(){
 </div>
 
 `;
+// Generate QR
+document.getElementById("upiQRCode").innerHTML = "";
+
+new QRCode(document.getElementById("upiQRCode"), {
+    text: upiLink,
+    width: 250,
+    height: 250
+});
+
+// Copy UPI ID
+document.getElementById("copyUpiBtn").onclick = async () => {
+
+    await navigator.clipboard.writeText(application.upi_id);
+
+    alert("UPI ID copied successfully.");
+
+};
 document.getElementById("gpayBtn").onclick =
 () => launchUPI(upiLink,"gpay");
 
