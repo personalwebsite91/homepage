@@ -686,13 +686,11 @@ function renderPaymentStep(){
     const application = campaignData.application;
     const patient = campaignData.patient;
    const upiLink =
-`upi://pay?pa=${encodeURIComponent(application.upi_id)}`
-+ `&pn=${encodeURIComponent(application.account_holder_name)}`
-+ `&am=${selectedDonationAmount}`
-+ `&cu=INR`
-+ `&tn=${encodeURIComponent(
-    `Donation for ${patient.patient_name} via CureKshetra`
-)}`;
+    "upi://pay" +
+    "?pa=" + encodeURIComponent(application.upi_id) +
+    "&pn=" + encodeURIComponent(application.account_holder_name) +
+    "&am=" + selectedDonationAmount +
+    "&cu=INR";
     const medical = campaignData.medical;
 
     step3.innerHTML = `
