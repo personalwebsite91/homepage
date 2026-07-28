@@ -685,11 +685,14 @@ function renderPaymentStep(){
 
     const application = campaignData.application;
     const patient = campaignData.patient;
-    const upiLink =
-`upi://pay?pa=${encodeURIComponent(application.upi_id)}
-&pn=${encodeURIComponent(application.account_holder_name)}
-&am=${selectedDonationAmount}
-&cu=INR`;
+   const upiLink =
+`upi://pay?pa=${encodeURIComponent(application.upi_id)}`
++ `&pn=${encodeURIComponent(application.account_holder_name)}`
++ `&am=${selectedDonationAmount}`
++ `&cu=INR`
++ `&tn=${encodeURIComponent(
+    `Donation for ${patient.patient_name} via CureKshetra`
+)}`;
     const medical = campaignData.medical;
 
     step3.innerHTML = `
@@ -921,7 +924,13 @@ if(step >= 3){
 
 }
 async function launchUPI(upiLink, method){
+if (!campaignData.application.upi_id) {
 
+    alert("This campaign does not have a UPI ID configured.");
+
+    return;
+
+}
     await supabaseClient
         .from("donation_intents")
         .update({
@@ -932,6 +941,53 @@ async function launchUPI(upiLink, method){
 
         })
         .eq("id", donationIntentId);
+
+   showPaymentConfirmation(upiLink, method);
+
+}
+function showPaymentConfirmation(upiLink, method){
+
+    const application = campaignData.application;
+    const patient = campaignData.patient;
+
+    const proceed = confirm(
+`You're about to donate ₹${selectedDonationAmount.toLocaleString("en-IN")}
+
+Beneficiary:
+${patient.patient_name}
+
+UPI ID:
+${application.upi_id}
+
+This payment goes directly to the beneficiary.
+
+Continue?`
+    );
+
+    if(proceed){
+
+        openUPI(upiLink, method);
+
+    }
+
+}
+async function openUPI(upiLink, method){
+
+    const { error } = await supabaseClient
+        .from("donation_intents")
+        .update({
+            payment_method: method,
+            status: "payment_started"
+        })
+        .eq("id", donationIntentId);
+
+    if(error){
+
+        alert(error.message);
+
+        return;
+
+    }
 
     window.location.href = upiLink;
 
